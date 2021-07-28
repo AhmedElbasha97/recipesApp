@@ -13,6 +13,18 @@ class APIManager {
             completion(response)
         }
      }
+    class func paginationForSearchRecipes(completion: @escaping (Result<RecipeSearch, Error>) -> Void) {
+        request(APIRouter.pagintionforSearchReciepies(URL: "https://api.edamam.com/api/recipes/v2?q=chicken&app_key=efd905e30b78041fd5a19c70c99c3a75&_cont=CHcVQBtNNQphDmgVQntAEX4BY0t6BQsOQ2dDBGMXY1N2AQYFUXlSB2YVawEiAQBTQmQVCzNHNQEmBABSRzAVBGIQNgd2AwMVLnlSVSBMPkd5BgMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&health=vegan&type=public&app_id=42f14c43")) { (response) in
+            completion(response)
+        }
+    }
+    class func RecipesDetails(completion: @escaping (Result<ReciepeDetails, Error>) -> Void) {
+            request(APIRouter.recipeDetails(URL: "https://api.edamam.com/api/recipes/v2/recipe_379d5e1cd14a8339773a9477428c33f0?type=public&app_id=42f14c43&app_key=efd905e30b78041fd5a19c70c99c3a75")) { (response) in
+                completion(response)
+            }
+     }
+        
+    
 }
 extension APIManager {
     // MARK:- The request function to get results in a closure

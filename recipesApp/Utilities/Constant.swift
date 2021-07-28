@@ -14,7 +14,7 @@ struct PrametersKey {
     static let health = "health"
 }
 struct Urls {
-    static let Base = "https://api.edamam.com/search?"
+    static let Base = "https://api.edamam.com/api/recipes/v2?type=public"
 }
 struct appKey {
     static let appId = "42f14c43"
