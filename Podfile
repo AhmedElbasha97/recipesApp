@@ -6,9 +6,9 @@ target 'recipesApp' do
   use_frameworks!
 
   # Pods for recipesApp
-      pod 'Alamofire'
+   pod 'Alamofire'
    pod 'SQLite.swift'
-
+   pod 'SDWebImage'
   target 'recipesAppTests' do
 
     inherit! :search_paths

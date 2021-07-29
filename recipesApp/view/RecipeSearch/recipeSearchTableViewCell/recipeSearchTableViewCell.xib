@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="182" id="KGk-i7-Jjw" customClass="recipeSearchTableViewCell" customModule="recipesApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="182"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="380" height="182"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZXa-bp-mAG">
+                        <rect key="frame" x="14" y="13" width="123" height="134.5"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbe-Ny-Fha">
+                        <rect key="frame" x="152" y="13" width="208" height="29.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JmZ-x6-stp">
+                        <rect key="frame" x="152" y="50" width="218" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DyX-Uf-imv">
+                        <rect key="frame" x="152" y="87" width="210" height="77"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Gbe-Ny-Fha" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.547368" id="0R0-SN-pPv"/>
+                    <constraint firstItem="JmZ-x6-stp" firstAttribute="leading" secondItem="Gbe-Ny-Fha" secondAttribute="leading" id="9pO-ar-gxx"/>
+                    <constraint firstItem="Gbe-Ny-Fha" firstAttribute="leading" secondItem="ZXa-bp-mAG" secondAttribute="trailing" constant="15" id="BOP-5n-hwL"/>
+                    <constraint firstAttribute="trailing" secondItem="JmZ-x6-stp" secondAttribute="trailing" constant="10" id="DVS-OH-rMI"/>
+                    <constraint firstItem="DyX-Uf-imv" firstAttribute="leading" secondItem="JmZ-x6-stp" secondAttribute="leading" id="Eov-5V-WQZ"/>
+                    <constraint firstItem="ZXa-bp-mAG" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.32304" id="KdS-It-Jmh"/>
+                    <constraint firstAttribute="bottom" secondItem="DyX-Uf-imv" secondAttribute="bottom" constant="18" id="MHc-EP-Kh0"/>
+                    <constraint firstItem="ZXa-bp-mAG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="MTe-Px-q18"/>
+                    <constraint firstItem="ZXa-bp-mAG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="P5D-IW-5ia"/>
+                    <constraint firstItem="Gbe-Ny-Fha" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.161319" id="V05-i7-hFS"/>
+                    <constraint firstItem="JmZ-x6-stp" firstAttribute="height" secondItem="Gbe-Ny-Fha" secondAttribute="height" id="b1A-MT-aSJ"/>
+                    <constraint firstItem="Gbe-Ny-Fha" firstAttribute="top" secondItem="ZXa-bp-mAG" secondAttribute="top" id="bnf-jv-CeI"/>
+                    <constraint firstAttribute="trailing" secondItem="DyX-Uf-imv" secondAttribute="trailing" constant="18" id="bzJ-2u-jWy"/>
+                    <constraint firstItem="ZXa-bp-mAG" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.740329" id="dCm-yl-Gga"/>
+                    <constraint firstItem="JmZ-x6-stp" firstAttribute="top" secondItem="Gbe-Ny-Fha" secondAttribute="bottom" constant="7.5" id="fIF-Dy-9TO"/>
+                    <constraint firstItem="DyX-Uf-imv" firstAttribute="top" secondItem="JmZ-x6-stp" secondAttribute="bottom" constant="8" id="fVW-yd-eS4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="recipeCategoryLabel" destination="DyX-Uf-imv" id="3fP-Eo-vOG"/>
+                <outlet property="recipeImage" destination="ZXa-bp-mAG" id="z8l-aS-2nj"/>
+                <outlet property="recipeSourceLabel" destination="JmZ-x6-stp" id="7h2-CG-K4Q"/>
+                <outlet property="recipeTitleLabel" destination="Gbe-Ny-Fha" id="LUN-ig-Jih"/>
+            </connections>
+            <point key="canvasLocation" x="420.28985507246381" y="100.44642857142857"/>
+        </tableViewCell>
+    </objects>
+</document>

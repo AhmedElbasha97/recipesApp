@@ -15,7 +15,7 @@ class ViewController: UIViewController {
                APIManager.SearchForRecipes() { (response) in
                 switch response{
                 case .success(let data):
-                    print(data.count)
+                    print(data)
                 
                 case .failure(let error):
                 print(error)
