@@ -5,19 +5,17 @@
 //  Created by ahmed elbasha on 27/07/2021.
 //  Copyright © 2021 ahmed elbasha. All rights reserved.
 //
-
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
 //   let reciepeDetails = try? newJSONDecoder().decode(ReciepeDetails.self, from: jsonData)
-
 import Foundation
 
 // MARK: - ReciepeDetails
 struct RecipeSearch: Codable {
-    let from, to, count: Int
-    let links: ReciepeDetailsLinks
-    let hits: [Hit]
+    let from, to, count: Int?
+    let links: ReciepeDetailsLinks?
+    var hits: [Hit]
 
     enum CodingKeys: String, CodingKey {
         case from, to, count
@@ -27,8 +25,8 @@ struct RecipeSearch: Codable {
 }
 
 struct ReciepeDetails: Codable {
-    let recipe: Recipe
-    let links: Links
+    let recipe: Recipe?
+    let links: Links?
 
     enum CodingKeys: String, CodingKey {
         case recipe
@@ -37,7 +35,7 @@ struct ReciepeDetails: Codable {
 }
 // MARK: - Links
 struct Links: Codable {
-    let linksSelf: SelfClass
+    let linksSelf: SelfClass?
 
     enum CodingKeys: String, CodingKey {
         case linksSelf = "self"
@@ -46,15 +44,15 @@ struct Links: Codable {
 
 // MARK: - SelfClass
 struct SelfClass: Codable {
-    let href: String
-    let title: String
+    let href: String?
+    let title: String?
 }
 
 
 // MARK: - Hit
 struct Hit: Codable {
-    let recipe: Recipe
-    let links: HitLinks
+    let recipe: Recipe?
+    let links: HitLinks?
 
     enum CodingKeys: String, CodingKey {
         case recipe
@@ -64,7 +62,7 @@ struct Hit: Codable {
 
 // MARK: - HitLinks
 struct HitLinks: Codable {
-    let linksSelf: Next
+    let linksSelf: Next?
 
     enum CodingKeys: String, CodingKey {
         case linksSelf = "self"
@@ -73,8 +71,8 @@ struct HitLinks: Codable {
 
 // MARK: - Next
 struct Next: Codable {
-    let href: String
-    let title: Title
+    let href: String?
+    let title: Title?
 }
 
 enum Title: String, Codable {
@@ -84,25 +82,25 @@ enum Title: String, Codable {
 
 // MARK: - Recipe
 struct Recipe: Codable {
-    let uri: String
-    let label: String
-    let image: String
-    let source: String
-    let url: String
-    let shareAs: String
-    let yield: Int
-    let dietLabels: [DietLabel]
-    let healthLabels: [String]
-    let cautions: [Caution]
-    let ingredientLines: [String]
-    let ingredients: [Ingredient]
-    let calories, totalWeight: Double
-    let totalTime: Int
+    let uri: String?
+    let label: String?
+    let image: String?
+    let source: String?
+    let url: String?
+    let shareAs: String?
+    let yield: Int?
+    let dietLabels: [DietLabel]?
+    let healthLabels: [String]?
+    let cautions: [Caution]?
+    let ingredientLines: [String]?
+    let ingredients: [Ingredient]?
+    let calories, totalWeight: Double?
+    let totalTime: Int?
     let cuisineType: [String]?
     let mealType: [MealType]?
     let dishType: [String]?
-    let totalNutrients, totalDaily: [String: Total]
-    let digest: [Digest]
+    let totalNutrients, totalDaily: [String: Total]?
+    let digest: [Digest]?
 }
 
 enum Caution: String, Codable {

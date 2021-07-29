@@ -14,7 +14,7 @@ class APIManager {
         }
      }
     class func paginationForSearchRecipes(completion: @escaping (Result<RecipeSearch, Error>) -> Void) {
-        request(APIRouter.pagintionforSearchReciepies(URL: "https://api.edamam.com/api/recipes/v2?q=chicken&app_key=efd905e30b78041fd5a19c70c99c3a75&_cont=CHcVQBtNNQphDmgVQntAEX4BY0t6BQsOQ2dDBGMXY1N2AQYFUXlSB2YVawEiAQBTQmQVCzNHNQEmBABSRzAVBGIQNgd2AwMVLnlSVSBMPkd5BgMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&health=vegan&type=public&app_id=42f14c43")) { (response) in
+        request(APIRouter.pagintionforSearchReciepies(URL: "https://api.edamam.com/api/recipes/v2?q=chicken&app_key=f8859842ad0beb95306523f0513bb47a&_cont=CHcVQBtNNQphDmgVQntAEX4BYldtBAEFQmNBA2MTZFFxBQsPUXlSB2AXZVJzUgIAEWFGBDcbZFclUQoBSm1FBmUVZ1MhAgAVLnlSVSBMPkd5AAMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&type=public&app_id=82e9f70b")) { (response) in
             completion(response)
         }
     }
@@ -43,8 +43,7 @@ extension APIManager {
             print(response)
         }
     }
-    
-    //ToDo:- for future api requests
+       //ToDo:- for future api requests
     private static func requestData(_ urlConvertible: URLRequestConvertible, completion:  @escaping (Result<Data, Error>) -> Void) {
         AF.request(urlConvertible).response { (response) in
             switch response.result {

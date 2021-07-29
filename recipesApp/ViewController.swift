@@ -12,25 +12,25 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//               APIManager.SearchForRecipes() { (response) in
-//                switch response{
-//                case .success(let data):
-//                 print(data)
-//
-//                case .failure(let error):
-//                print(error)
-//                }
-//
-//            }
-        APIManager.RecipesDetails() { (response) in
-            switch response{
-            case .success(let data):
-                print(data.recipe)
-            case .failure(let error):
-            print(error)
+               APIManager.SearchForRecipes() { (response) in
+                switch response{
+                case .success(let data):
+                    print(data.count)
+                
+                case .failure(let error):
+                print(error)
+                }
+
             }
-            
-        }
+//        APIManager.RecipesDetails() { (response) in
+//            switch response{
+//            case .success(let data):
+//                print(data.recipe)
+//            case .failure(let error):
+//            print(error)
+//            }
+//            
+//        }
 //           APIManager.paginationForSearchRecipes() { (response) in
 //            switch response{
 //            case .success(let data):
@@ -38,12 +38,12 @@ class ViewController: UIViewController {
 //            case .failure(let error):
 //            print(error)
 //            }
-//            
+//
 //        }
-          
-        }
+//
+//        }
             
-        
+    }
         // Do any additional setup after loading the view.
     }
 

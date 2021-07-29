@@ -27,11 +27,12 @@ enum APIRouter: URLRequestConvertible {
     // MARK: - Parameters
     private var parameters: Parameters? {
         switch self {
-        case .searchForRecipes(let search):
-            return [PrametersKey.search: search,
+        case .searchForRecipes(let search) :
+            return [PrametersKey.type: type.pub,
+                    PrametersKey.search: search,
                     PrametersKey.app_id:appKey.appId,
                     PrametersKey.app_key:appKey.appKey,
-                    PrametersKey.health:"vegan"]
+                  ]
     
         default:
             return nil
@@ -81,8 +82,8 @@ extension APIRouter {
         do {
             let anyEncodable = AnyEncodable(body)
             let jsonData = try JSONEncoder().encode(anyEncodable)
-            let jsonString = String(data: jsonData, encoding: .utf8)!
-            print(jsonString)
+            _ = String(data: jsonData, encoding: .utf8)!
+            
             return jsonData
         } catch {
             print(error)

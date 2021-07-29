@@ -8,15 +8,19 @@
 
 import Foundation
 struct PrametersKey {
+    static let type = "type"
     static let search = "q"
     static let app_id = "app_id"
     static let app_key = "app_key"
     static let health = "health"
 }
 struct Urls {
-    static let Base = "https://api.edamam.com/api/recipes/v2?type=public"
+    static let Base = "https://api.edamam.com/api/recipes/v2"
 }
 struct appKey {
-    static let appId = "42f14c43"
-    static let appKey = "efd905e30b78041fd5a19c70c99c3a75"
+    static let appId = "82e9f70b"
+    static let appKey = "f8859842ad0beb95306523f0513bb47a"
+}
+struct type {
+    static let pub = "public"
 }
