@@ -18,10 +18,12 @@ class recipeSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeSourceLabel: UILabel!
     @IBOutlet weak var recipeCategoryLabel: UILabel!
     var delegate: recipeSearchTableViewCell?
+    var viewModel: recipeSearchTableViewCellViewModelProtocol?
     var callback: ((UITableViewCell) -> Void)?
     override func awakeFromNib() {
         super.awakeFromNib()
         SetUpUILabel()
+        self.viewModel = recipeSearchTableViewCellViewModel(view: self)
         // Initialization code
     }
 
@@ -48,7 +50,7 @@ extension recipeSearchTableViewCell{
 }
 extension recipeSearchTableViewCell: recipeSearchTableViewCellProtocol{
     func sendDataToViewModel(dataofTheCell: Hit) {
-        
+        viewModel?.takeDataFromVC(data: dataofTheCell)
     }
     
     func Configration(recipeImage: UIImage, recipeTitle: String, recipeDescription: String, recipeHealthLabel: String) {
