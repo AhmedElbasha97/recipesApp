@@ -12,7 +12,7 @@ import Alamofire
 enum APIRouter: URLRequestConvertible {
     
     // The endpoint name
-    case searchForRecipes(search:String)
+    case searchForRecipes(search:String,helthFilter:String)
     case pagintionforSearchReciepies(URL:String)
     case recipeDetails(URL:String)
 
@@ -27,13 +27,21 @@ enum APIRouter: URLRequestConvertible {
     // MARK: - Parameters
     private var parameters: Parameters? {
         switch self {
-        case .searchForRecipes(let search) :
+        case .searchForRecipes(let search,let kind) :
+            if kind == ""{
             return [PrametersKey.type: type.pub,
                     PrametersKey.search: search,
                     PrametersKey.app_id:appKey.appId,
                     PrametersKey.app_key:appKey.appKey,
                   ]
-    
+            }else{
+                return [PrametersKey.type: type.pub,
+                        PrametersKey.search: search,
+                        PrametersKey.app_id:appKey.appId,
+                        PrametersKey.app_key:appKey.appKey,
+                        PrametersKey.health:kind
+                      ]
+            }
         default:
             return nil
         }

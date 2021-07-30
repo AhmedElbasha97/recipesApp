@@ -12,16 +12,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-               APIManager.SearchForRecipes() { (response) in
-                switch response{
-                case .success(let data):
-                    print(data.count)
-                
-                case .failure(let error):
-                print(error)
-                }
-
-            }
+//               APIManager.SearchForRecipes() { (response) in
+//                switch response{
+//                case .success(let data):
+//                    print(data)
+//
+//                case .failure(let error):
+//                print(error)
+//                }
+//
+//            }
 //        APIManager.RecipesDetails() { (response) in
 //            switch response{
 //            case .success(let data):
