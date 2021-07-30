@@ -13,8 +13,6 @@ protocol RecipeSearchVCProtocol: class {
     func reloadData()
     func showNoDataImage()
     func showAlert(message: String)
-    func showSortType(sortType: String)
-    func showNoData(label1: String)
      
 }
 
@@ -61,29 +59,15 @@ extension RecipeSearchVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-         return 2
-     }
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.viewModel.anotherPage(index:indexPath.row)
     }
 }
+
 extension RecipeSearchVC: RecipeSearchVCProtocol {
     func showNoDataImage() {
         RecipeSearchView.showNoDataImage()
     }
-    
-    func showSortType(sortType: String) {
-          print("hi")
-        
-    }
-    
-    func showNoData(label1: String) {
-       print("hi")
-    }
-    
-
     
     func showloader() {
         self.showLoader()
