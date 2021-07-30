@@ -11,6 +11,7 @@ protocol recipeSearchViewModelProtocol {
     func searchForRecipes(searchKeyWord:String,filterIndex:Int)
     func counter()->Int
     func anotherPage()
+    
 }
 class recipeSearchViewModel{
     private weak var view: RecipeSearchVCProtocol?
