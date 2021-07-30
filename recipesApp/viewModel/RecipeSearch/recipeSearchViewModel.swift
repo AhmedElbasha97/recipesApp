@@ -10,8 +10,8 @@ import Foundation
 protocol recipeSearchViewModelProtocol {
     func searchForRecipes(searchKeyWord:String,filterIndex:Int)
     func counter()->Int
-    func anotherPage()
-    
+    func anotherPage(index:Int)
+    func sentData(index:Int) -> Hit
 }
 class recipeSearchViewModel{
     private weak var view: RecipeSearchVCProtocol?
@@ -44,6 +44,7 @@ extension recipeSearchViewModel{
                 self.view?.reloadData()
                 }
             case .failure(let error):
+                self.view?.hideLoader()
                 self.view?.showAlert(message: "\(error.localizedDescription)")
             print(error)
             }
@@ -58,11 +59,13 @@ extension recipeSearchViewModel{
         switch response{
         case .success(let data):
             for data in data.hits{
+                self.view?.hideLoader()
             self.arrOfRecipe.append(data)
             self.view?.reloadData()
             }
         print(data)
         case .failure(let error):
+            self.view?.hideLoader()
             self.view?.showAlert(message: "\(error.localizedDescription)")
         print(error)
                     }
@@ -72,6 +75,9 @@ extension recipeSearchViewModel{
     }
 }
 extension recipeSearchViewModel: recipeSearchViewModelProtocol{
+    func sentData(index: Int) -> Hit {
+        return self.arrOfRecipe[index]
+    }
     func searchForRecipes(searchKeyWord: String, filterIndex: Int) {
         switch filterIndex {
         case 1:
@@ -93,8 +99,11 @@ extension recipeSearchViewModel: recipeSearchViewModelProtocol{
         return arrOfRecipe.count
     }
     
-    func anotherPage() {
+    func anotherPage(index:Int) {
+        
+        if (index>=(count-2)){
         AnothePage()
+        }
     }
     
     

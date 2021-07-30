@@ -56,17 +56,17 @@ extension RecipeSearchVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = self.RecipeSearchView.searchRecipeTableView.dequeueReusableCell(withIdentifier: Cells.recipeSearchTableViewCell , for: indexPath) as? recipeSearchTableViewCell else {
             return UITableViewCell()
         }
-        
-        cell.c
+        cell.shadowAndBorderForCell(yourTableViewCell: cell)
+        cell.sendDataToViewModel(dataofTheCell: (viewModel?.sentData(index: indexPath.row) ?? nil)!)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 256.5
-    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+         return 2
+     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-       
+        self.viewModel.anotherPage(index:indexPath.row)
     }
 }
 extension RecipeSearchVC: RecipeSearchVCProtocol {
