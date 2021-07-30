@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+protocol recipeSearchTableViewCellProtocol {
+    func sendDataToViewModel(dataofTheCell:Hit)
+    func Configration(recipeImage:UIImage,recipeTitle:String,recipeDescription:String,recipeHealthLabel:String)
+}
 class recipeSearchTableViewCell: UITableViewCell {
 
     @IBOutlet weak var recipeImage: UIImageView!
@@ -30,7 +33,7 @@ class recipeSearchTableViewCell: UITableViewCell {
     
 }
 extension recipeSearchTableViewCell{
-    func  confugre(recipeImage:UIImage,recipeTitle:String,recipeDescription:String,recipeHealthLabel:String){
+   private func configure(recipeImage:UIImage,recipeTitle:String,recipeDescription:String,recipeHealthLabel:String){
         self.recipeImage.image=recipeImage
         self.recipeTitleLabel.text = recipeTitle
         self.recipeSourceLabel.text = recipeDescription
@@ -42,4 +45,15 @@ extension recipeSearchTableViewCell{
         recipeTitleLabel.sizeToFit()
          recipeTitleLabel.numberOfLines = 0
     }
+}
+extension recipeSearchTableViewCell: recipeSearchTableViewCellProtocol{
+    func sendDataToViewModel(dataofTheCell: Hit) {
+        
+    }
+    
+    func Configration(recipeImage: UIImage, recipeTitle: String, recipeDescription: String, recipeHealthLabel: String) {
+        configure(recipeImage: recipeImage, recipeTitle: recipeTitle, recipeDescription: recipeDescription, recipeHealthLabel: recipeHealthLabel)
+    }
+    
+    
 }

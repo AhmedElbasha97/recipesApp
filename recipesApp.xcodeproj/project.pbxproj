@@ -25,8 +25,11 @@
 		7E705EA326B34D91009A1692 /* recipeSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E705EA126B34D91009A1692 /* recipeSearchTableViewCell.swift */; };
 		7E705EA426B34D91009A1692 /* recipeSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E705EA226B34D91009A1692 /* recipeSearchTableViewCell.xib */; };
 		7E820CFB26B3580700B0B7C1 /* viewController+ProgressLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E820CFA26B3580700B0B7C1 /* viewController+ProgressLoader.swift */; };
+		7E820D0226B3795600B0B7C1 /* recipeSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E820D0126B3795600B0B7C1 /* recipeSearchViewModel.swift */; };
 		7E83E97226B33BE5000972E5 /* RecipeSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83E97126B33BE5000972E5 /* RecipeSearchVC.swift */; };
 		7E83E97426B33BFC000972E5 /* RecipeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83E97326B33BFC000972E5 /* RecipeSearchView.swift */; };
+		7E911B5D26B4513800F38656 /* viewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E911B5C26B4513800F38656 /* viewController+Alert.swift */; };
+		7E911B6026B4618100F38656 /* recipeSearchTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E911B5F26B4618100F38656 /* recipeSearchTableViewCellViewModel.swift */; };
 		EA299E0B17403BC044E4D35B /* Pods_recipesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A87DDD61155EF5186BEB21CC /* Pods_recipesApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,8 +79,11 @@
 		7E705EA126B34D91009A1692 /* recipeSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipeSearchTableViewCell.swift; sourceTree = "<group>"; };
 		7E705EA226B34D91009A1692 /* recipeSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = recipeSearchTableViewCell.xib; sourceTree = "<group>"; };
 		7E820CFA26B3580700B0B7C1 /* viewController+ProgressLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "viewController+ProgressLoader.swift"; sourceTree = "<group>"; };
+		7E820D0126B3795600B0B7C1 /* recipeSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipeSearchViewModel.swift; sourceTree = "<group>"; };
 		7E83E97126B33BE5000972E5 /* RecipeSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchVC.swift; sourceTree = "<group>"; };
 		7E83E97326B33BFC000972E5 /* RecipeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchView.swift; sourceTree = "<group>"; };
+		7E911B5C26B4513800F38656 /* viewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "viewController+Alert.swift"; sourceTree = "<group>"; };
+		7E911B5F26B4618100F38656 /* recipeSearchTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipeSearchTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		A201AC6723C2E237017ECD5B /* Pods-recipesAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipesAppTests.debug.xcconfig"; path = "Target Support Files/Pods-recipesAppTests/Pods-recipesAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A30B42FD65EF4FBA116465B7 /* Pods-recipesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipesApp.release.xcconfig"; path = "Target Support Files/Pods-recipesApp/Pods-recipesApp.release.xcconfig"; sourceTree = "<group>"; };
 		A87DDD61155EF5186BEB21CC /* Pods_recipesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_recipesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +229,7 @@
 			children = (
 				7E705E9E26B34BE3009A1692 /* viewController+NavBar.swift */,
 				7E820CFA26B3580700B0B7C1 /* viewController+ProgressLoader.swift */,
+				7E911B5C26B4513800F38656 /* viewController+Alert.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -236,6 +243,15 @@
 			path = recipeSearchTableViewCell;
 			sourceTree = "<group>";
 		};
+		7E820D0026B3790600B0B7C1 /* RecipeSearch */ = {
+			isa = PBXGroup;
+			children = (
+				7E820D0126B3795600B0B7C1 /* recipeSearchViewModel.swift */,
+				7E911B5F26B4618100F38656 /* recipeSearchTableViewCellViewModel.swift */,
+			);
+			path = RecipeSearch;
+			sourceTree = "<group>";
+		};
 		7E83E96C26B33323000972E5 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +263,8 @@
 		7E83E96D26B3333F000972E5 /* viewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7E911B5E26B4611C00F38656 /* New Group */,
+				7E820D0026B3790600B0B7C1 /* RecipeSearch */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -275,6 +293,13 @@
 				7E83E97326B33BFC000972E5 /* RecipeSearchView.swift */,
 			);
 			path = RecipeSearch;
+			sourceTree = "<group>";
+		};
+		7E911B5E26B4611C00F38656 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		95364D8D73D173AEDF74AE14 /* Frameworks */ = {
@@ -528,10 +553,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E820D0226B3795600B0B7C1 /* recipeSearchViewModel.swift in Sources */,
+				7E911B5D26B4513800F38656 /* viewController+Alert.swift in Sources */,
 				7E820CFB26B3580700B0B7C1 /* viewController+ProgressLoader.swift in Sources */,
 				7E3E029126B0D71F002C1B3F /* ViewController.swift in Sources */,
 				7E705EA326B34D91009A1692 /* recipeSearchTableViewCell.swift in Sources */,
 				7E3E02BF26B0DAB4002C1B3F /* APIRouter.swift in Sources */,
+				7E911B6026B4618100F38656 /* recipeSearchTableViewCellViewModel.swift in Sources */,
 				7E705E9F26B34BE3009A1692 /* viewController+NavBar.swift in Sources */,
 				7E3E02C126B0DACC002C1B3F /* APIManager.swift in Sources */,
 				7E3E02D026B0F73C002C1B3F /* reciepeSearchModel.swift in Sources */,

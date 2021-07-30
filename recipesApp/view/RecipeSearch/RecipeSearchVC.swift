@@ -11,6 +11,7 @@ protocol RecipeSearchVCProtocol: class {
     func showloader()
     func hideLoader()
     func reloadData()
+    func showNoDataImage()
     func showAlert(message: String)
     func showSortType(sortType: String)
     func showNoData(label1: String)
@@ -20,8 +21,10 @@ protocol RecipeSearchVCProtocol: class {
 class RecipeSearchVC: UIViewController {
     @IBOutlet weak var RecipeSearchView: RecipeSearchView!
        var searchedText: String!
+    private var viewModel: recipeSearchViewModelProtocol!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel = recipeSearchViewModel(view: self)
         RecipeSearchView.searchRecipeSugmentedController.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
         RecipeSearchView.setUp(view: RecipeSearchView)
         self.setupNavController(title: "Recipe Search", view: RecipeSearchView)
@@ -29,17 +32,7 @@ class RecipeSearchVC: UIViewController {
         setupSearchBarView()
     }
     @objc func indexChanged() {
-           if RecipeSearchView.searchRecipeSugmentedController.selectedSegmentIndex == 0 {
-               
-              
-           } else if RecipeSearchView.searchRecipeSugmentedController.selectedSegmentIndex == 1 {
-             
-                
-           } else if RecipeSearchView.searchRecipeSugmentedController.selectedSegmentIndex == 2 {
-         
-           }else if RecipeSearchView.searchRecipeSugmentedController.selectedSegmentIndex == 3 {
-             
-           }
+        viewModel.searchForRecipes(searchKeyWord: searchedText, filterIndex: RecipeSearchView.searchRecipeSugmentedController.selectedSegmentIndex)
            
        }
 
@@ -56,7 +49,7 @@ extension RecipeSearchVC{
 }
 extension RecipeSearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return 1
+        return self.viewModel.counter()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,7 +57,7 @@ extension RecipeSearchVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-     
+        cell.c
         return cell
     }
     
@@ -77,6 +70,10 @@ extension RecipeSearchVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 extension RecipeSearchVC: RecipeSearchVCProtocol {
+    func showNoDataImage() {
+        RecipeSearchView.showNoDataImage()
+    }
+    
     func showSortType(sortType: String) {
           print("hi")
         
@@ -96,8 +93,8 @@ extension RecipeSearchVC: RecipeSearchVCProtocol {
         self.terminateLoader()
     }
     
-    func showAlert( message: String) {
-        
+    func showAlert(message: String) {
+        self.displayalert(title: "Sorry",message: "\(message)")
     }
     
     func reloadData() {

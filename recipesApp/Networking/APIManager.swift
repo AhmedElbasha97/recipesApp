@@ -8,13 +8,13 @@
 import Foundation
 import Alamofire
 class APIManager {
-    class func SearchForRecipes(completion: @escaping (Result<RecipeSearch, Error>) -> Void) {
-        request(APIRouter.searchForRecipes(search: "chicken")) { (response) in
+    class func SearchForRecipes(search:String,kind:String,completion: @escaping (Result<RecipeSearch, Error>) -> Void) {
+        request(APIRouter.searchForRecipes(search: search, helthFilter: kind)) { (response) in
             completion(response)
         }
      }
-    class func paginationForSearchRecipes(completion: @escaping (Result<RecipeSearch, Error>) -> Void) {
-        request(APIRouter.pagintionforSearchReciepies(URL: "https://api.edamam.com/api/recipes/v2?q=chicken&app_key=f8859842ad0beb95306523f0513bb47a&_cont=CHcVQBtNNQphDmgVQntAEX4BYldtBAEFQmNBA2MTZFFxBQsPUXlSB2AXZVJzUgIAEWFGBDcbZFclUQoBSm1FBmUVZ1MhAgAVLnlSVSBMPkd5AAMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&type=public&app_id=82e9f70b")) { (response) in
+    class func paginationForSearchRecipes(url:String,completion: @escaping (Result<RecipeSearch, Error>) -> Void) {
+        request(APIRouter.pagintionforSearchReciepies(URL: "\(url)")) { (response) in
             completion(response)
         }
     }
