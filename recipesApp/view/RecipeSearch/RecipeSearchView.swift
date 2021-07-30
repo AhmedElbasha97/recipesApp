@@ -15,6 +15,7 @@ class RecipeSearchView: UIView{
     func setUp(view: UIView){
      setUpTableView()
      setUpSegmentedController()
+        setupSearchBarView()
     }
     //MARK:- set Up Table View
     private func setUpTableView(){
@@ -23,8 +24,13 @@ class RecipeSearchView: UIView{
         searchRecipeTableView.separatorStyle = .none
         searchRecipeTableView.allowsSelection = false
     }
-    //MARK:- set up navigation bar
-   
+    //MARK:- set up Search bar
+   private func setupSearchBarView(){
+       searchRecipeSearchBar.isTranslucent = false
+       searchRecipeSearchBar.backgroundImage = UIImage()
+       searchRecipeSearchBar.barTintColor = UIColor.white
+       searchRecipeSearchBar.tintColor = UIColor.white
+   }
     //MARK:- set up segmented controller
     private func setUpSegmentedController(){
         searchRecipeSugmentedController.selectedSegmentIndex=4

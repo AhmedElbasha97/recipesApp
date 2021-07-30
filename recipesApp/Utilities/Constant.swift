@@ -24,3 +24,6 @@ struct appKey {
 struct type {
     static let pub = "public"
 }
+struct Cells {
+    static let recipeSearchTableViewCell = "recipeSearchTableViewCell"
+}

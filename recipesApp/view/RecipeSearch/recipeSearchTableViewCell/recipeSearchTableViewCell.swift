@@ -14,6 +14,8 @@ class recipeSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeSourceLabel: UILabel!
     @IBOutlet weak var recipeCategoryLabel: UILabel!
+    var delegate: recipeSearchTableViewCell?
+    var callback: ((UITableViewCell) -> Void)?
     override func awakeFromNib() {
         super.awakeFromNib()
         SetUpUILabel()
@@ -26,6 +28,14 @@ class recipeSearchTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+}
+extension recipeSearchTableViewCell{
+    func  confugre(recipeImage:UIImage,recipeTitle:String,recipeDescription:String,recipeHealthLabel:String){
+        self.recipeImage.image=recipeImage
+        self.recipeTitleLabel.text = recipeTitle
+        self.recipeSourceLabel.text = recipeDescription
+        self.recipeCategoryLabel.text = recipeHealthLabel
+    }
 }
 extension recipeSearchTableViewCell{
     private func SetUpUILabel(){
