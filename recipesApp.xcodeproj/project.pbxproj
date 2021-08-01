@@ -254,6 +254,13 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		7E71772026B4D355000CB97A /* RecipeDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RecipeDetails;
+			sourceTree = "<group>";
+		};
 		7E820D0026B3790600B0B7C1 /* RecipeSearch */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +273,7 @@
 		7E83E96C26B33323000972E5 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				7E71772026B4D355000CB97A /* RecipeDetails */,
 				7E83E97026B33BAC000972E5 /* RecipeSearch */,
 			);
 			path = view;
