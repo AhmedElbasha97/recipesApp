@@ -15,6 +15,7 @@ protocol RecipeDetailsViewModelProtocol {
     func recipeIngridients() -> String
     func recipeImage(completion: @escaping (UIImage?) -> Void)
     func recipeUrlOpener()
+    func sharingOption()
 }
 class RecipeDetailsViewModel{
     private weak var view: RecipeDetailsVCProtocol?
@@ -22,6 +23,7 @@ class RecipeDetailsViewModel{
     var title = ""
     var urlOfRecipe = ""
     var imageURL = ""
+    var recipeURL = ""
     // MARK:- Life Cycle Methods
     init(view: RecipeDetailsVCProtocol) {
         self.view = view
@@ -61,14 +63,27 @@ extension RecipeDetailsViewModel{
             self.imageURL = data.recipe?.image ?? ""
             self.urlOfRecipe = data.recipe?.url ?? ""
             self.title = data.recipe?.label ?? ""
+            self.recipeURL = data.links?.linksSelf?.href ?? ""
             self.view?.hideLoader()
         case .failure(let error):
              self.view?.showAlert(message: "\(error.localizedDescription)")
         }
        }
     }
+    private func sharingRecipeURL(url:String){
+        let someText:String = "this recipe is from greatest recipe app"
+        let objectsToShare:URL = URL(string: "\(url)")!
+        let sharedObjects:[AnyObject] = [objectsToShare as AnyObject,someText as AnyObject]
+        let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook,UIActivity.ActivityType.postToTwitter,UIActivity.ActivityType.mail]
+        self.view?.presenterOfSharingOption(view: activityViewController)
+    }
 }
 extension RecipeDetailsViewModel: RecipeDetailsViewModelProtocol{
+    func sharingOption() {
+        sharingRecipeURL(url: self.recipeURL)
+    }
+    
     func getDataOfDetailsScreen(url: String) {
         self.getData(url: url)
     }
@@ -85,7 +100,6 @@ extension RecipeDetailsViewModel: RecipeDetailsViewModelProtocol{
         self.getImageOfRecipe(path: self.imageURL) { (image) in
             completion(image)
         }
-    
     }
     
     func recipeUrlOpener() {

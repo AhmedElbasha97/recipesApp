@@ -16,6 +16,7 @@ class  recipDetailsView: UIView {
             shapeTheBTN(BTN: recipeDetailsButton, titleOfTheButton: "Recipe Site", sizeOfTheFont: 20.0)
          setUpUILabael(size: 30.0, isBold: true, Textolor: UIColor.black, label: recipeDetailsTitleLabel)
          setUpUILabael(size: 20.0, isBold: false, Textolor: UIColor.black, label: rwecipeDetailsInstrictionLabel)
+            
             }
     func ConfigureData(recipeImage:UIImage,recipeTitle:String,recipeIngridients:String){
         self.recipeDetalsImageView.image=recipeImage
