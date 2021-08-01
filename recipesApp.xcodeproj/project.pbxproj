@@ -23,6 +23,7 @@
 		7E3E02D026B0F73C002C1B3F /* reciepeSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3E02CF26B0F73C002C1B3F /* reciepeSearchModel.swift */; };
 		7E67F03926B62CBE0092ECC5 /* recipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67F03826B62CBE0092ECC5 /* recipeDetailsView.swift */; };
 		7E67F03B26B63B5B0092ECC5 /* recipeDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67F03A26B63B5B0092ECC5 /* recipeDetailsVC.swift */; };
+		7E67F03D26B63E710092ECC5 /* UIViewController+StoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67F03C26B63E710092ECC5 /* UIViewController+StoryBoard.swift */; };
 		7E705E9F26B34BE3009A1692 /* viewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E705E9E26B34BE3009A1692 /* viewController+NavBar.swift */; };
 		7E705EA326B34D91009A1692 /* recipeSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E705EA126B34D91009A1692 /* recipeSearchTableViewCell.swift */; };
 		7E705EA426B34D91009A1692 /* recipeSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E705EA226B34D91009A1692 /* recipeSearchTableViewCell.xib */; };
@@ -80,6 +81,7 @@
 		7E3E02CF26B0F73C002C1B3F /* reciepeSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reciepeSearchModel.swift; sourceTree = "<group>"; };
 		7E67F03826B62CBE0092ECC5 /* recipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipeDetailsView.swift; sourceTree = "<group>"; };
 		7E67F03A26B63B5B0092ECC5 /* recipeDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipeDetailsVC.swift; sourceTree = "<group>"; };
+		7E67F03C26B63E710092ECC5 /* UIViewController+StoryBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+StoryBoard.swift"; sourceTree = "<group>"; };
 		7E705E9E26B34BE3009A1692 /* viewController+NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "viewController+NavBar.swift"; sourceTree = "<group>"; };
 		7E705EA126B34D91009A1692 /* recipeSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipeSearchTableViewCell.swift; sourceTree = "<group>"; };
 		7E705EA226B34D91009A1692 /* recipeSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = recipeSearchTableViewCell.xib; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				7E705E9E26B34BE3009A1692 /* viewController+NavBar.swift */,
 				7E820CFA26B3580700B0B7C1 /* viewController+ProgressLoader.swift */,
 				7E911B5C26B4513800F38656 /* viewController+Alert.swift */,
+				7E67F03C26B63E710092ECC5 /* UIViewController+StoryBoard.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E67F03D26B63E710092ECC5 /* UIViewController+StoryBoard.swift in Sources */,
 				7E820D0226B3795600B0B7C1 /* recipeSearchViewModel.swift in Sources */,
 				7E911B5D26B4513800F38656 /* viewController+Alert.swift in Sources */,
 				7E820CFB26B3580700B0B7C1 /* viewController+ProgressLoader.swift in Sources */,
