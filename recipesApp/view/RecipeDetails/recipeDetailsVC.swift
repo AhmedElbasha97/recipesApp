@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import SafariServices
 protocol RecipeDetailsVCProtocol: class {
     func showloader()
     func hideLoader()
     func showAlert(message: String)
+    func presenterofWeb(view: SFSafariViewController)
      
 }
 class RecipeDetailsVC: UIViewController {
@@ -33,7 +35,9 @@ class RecipeDetailsVC: UIViewController {
     }
 }
 extension RecipeDetailsVC: RecipeDetailsVCProtocol {
-
+    func presenterofWeb(view: SFSafariViewController) {
+        present(view, animated: true)
+    }
     
     func showloader() {
         self.showLoader()

@@ -31,15 +31,17 @@ extension recipeSearchViewModel{
         APIManager.SearchForRecipes(search: searchKeyWord, kind: filterIndex) { (response) in
             switch response{
             case .success(let data):
+                print(data.count ?? 0)
                 if data.count == 0{
                 self.view?.showNoDataImage()
                 self.view?.hideLoader()
                 self.view?.showAlert(message: "There's No Data To Show")
                 }else{
-                self.arrOfRecipe=data.hits
+                    self.view?.hideNoDataImage()
+                self.arrOfRecipe=data.hits ?? []
                 self.count = data.to ?? 0
                 self.theTotalNumOfItems = data.count ?? 0
-                self.urlOfNextPage = data.links?.next.href ?? " "
+                    self.urlOfNextPage = data.links?.next?.href ?? " "
                 self.view?.hideLoader()
                 self.view?.reloadData()
                 }
@@ -58,8 +60,10 @@ extension recipeSearchViewModel{
             APIManager.paginationForSearchRecipes(url:self.urlOfNextPage) { (response) in
         switch response{
         case .success(let data):
-            for data in data.hits{
+            self.count = data.count ?? 0
+            for data in data.hits ?? []{
                 self.view?.hideLoader()
+                
             self.arrOfRecipe.append(data)
             self.view?.reloadData()
             }

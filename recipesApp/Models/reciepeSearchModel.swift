@@ -15,7 +15,7 @@ import Foundation
 struct RecipeSearch: Codable {
     let from, to, count: Int?
     let links: ReciepeDetailsLinks?
-    var hits: [Hit]
+    var hits: [Hit]?
 
     enum CodingKeys: String, CodingKey {
         case from, to, count
@@ -88,26 +88,26 @@ struct Recipe: Codable {
     let source: String?
     let url: String?
     let shareAs: String?
-    let yield: Int?
-    let dietLabels: [DietLabel]?
+    let yield: Double?
+    let dietLabels: [String]?
     let healthLabels: [String]?
-    let cautions: [Caution]?
+    let cautions: [String]?
     let ingredientLines: [String]?
     let ingredients: [Ingredient]?
     let calories, totalWeight: Double?
     let totalTime: Int?
     let cuisineType: [String]?
-    let mealType: [MealType]?
+    let mealType: [String]?
     let dishType: [String]?
     let totalNutrients, totalDaily: [String: Total]?
     let digest: [Digest]?
 }
 
-enum Caution: String, Codable {
-    case fodmap = "FODMAP"
-    case soy = "Soy"
-    case sulfites = "Sulfites"
-}
+//enum Caution: String, Codable {
+//    case fodmap = "FODMAP"
+//    case soy = "Soy"
+//    case sulfites = "Sulfites"
+//}
 
 enum DietLabel: String, Codable {
     case balanced = "Balanced"
@@ -118,13 +118,13 @@ enum DietLabel: String, Codable {
 
 // MARK: - Digest
 struct Digest: Codable {
-    let label: Label
-    let tag: String
+    let label: Label?
+    let tag: String?
     let schemaOrgTag: SchemaOrgTag?
-    let total: Double
-    let hasRDI: Bool
-    let daily: Double
-    let unit: Unit
+    let total: Double?
+    let hasRDI: Bool?
+    let daily: Double?
+    let unit: Unit?
     let sub: [Digest]?
 }
 
@@ -188,10 +188,10 @@ enum Unit: String, Codable {
 
 // MARK: - Ingredient
 struct Ingredient: Codable {
-    let text: String
-    let weight: Double
+    let text: String?
+    let weight: Double?
     let foodCategory: String?
-    let foodID: String
+    let foodID: String?
     let image: String?
 
     enum CodingKeys: String, CodingKey {
@@ -208,12 +208,12 @@ enum MealType: String, Codable {
 
 // MARK: - Total
 struct Total: Codable {
-    let label: Label
-    let quantity: Double
-    let unit: Unit
+    let label: Label?
+    let quantity: Double?
+    let unit: Unit?
 }
 
 // MARK: - ReciepeDetailsLinks
 struct ReciepeDetailsLinks: Codable {
-    let next: Next
+    let next: Next?
 }

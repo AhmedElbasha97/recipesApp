@@ -22,6 +22,10 @@ class RecipeSearchView: UIView{
     func showNoDataImage(){
         noDataImageView.isHidden = false
     }
+    func hideNoDataImage(){
+          noDataImageView.isHidden = true
+      }
+
     //MARK:- set Up Table View
     private func setUpTableView(){
         searchRecipeTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
