@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="69.642857142857139"/>
         </scene>
-        <!--View Controller-->
+        <!--Recipe DetailsVC-->
         <scene sceneID="nCl-T8-bt1">
             <objects>
-                <viewController id="rva-E4-NG7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecipeDetailsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rva-E4-NG7" customClass="RecipeDetailsVC" customModule="recipesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WSY-IP-loh" customClass="recipDetailsView" customModule="recipesApp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,6 +106,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHZ-xA-Jc2">
                                                 <rect key="frame" x="-5.5" y="672" width="386" height="76"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="recipeDetailsURLButton:" destination="rva-E4-NG7" eventType="touchUpInside" id="H80-aF-EJr"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -158,6 +161,9 @@
                             <outlet property="rwecipeDetailsInstrictionLabel" destination="yOf-wz-TqH" id="1Wr-dB-tdt"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="recipeDetailsView" destination="WSY-IP-loh" id="7MJ-qq-Goi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nDd-XJ-PRz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

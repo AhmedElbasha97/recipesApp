@@ -7,24 +7,44 @@
 //
 
 import UIKit
-
-class recipeDetailsVC: UIViewController {
-
+protocol RecipeDetailsVCProtocol: class {
+    func showloader()
+    func hideLoader()
+    func showAlert(message: String)
+     
+}
+class RecipeDetailsVC: UIViewController {
+    @IBOutlet var recipeDetailsView: recipDetailsView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.recipeDetailsView.setUp(view: recipeDetailsView)
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    class func create(URL: Int) -> RecipeDetailsVC {
+      let recipeDetailsVC: RecipeDetailsVC = UIViewController.create(storyboardName: Storyboards.main, identifier:
+                 ViewControllers.recipeDetailsVC)
+            
+             return recipeDetailsVC
+         }
+    
+    @IBAction func recipeDetailsURLButton(_ sender: Any) {
+        
     }
-    */
+}
+extension RecipeDetailsVC: RecipeDetailsVCProtocol {
 
+    
+    func showloader() {
+        self.showLoader()
+    }
+    
+    func hideLoader() {
+        self.terminateLoader()
+    }
+    
+    func showAlert(message: String) {
+        self.displayalert(title: "Sorry",message: "\(message)")
+    }
+    
 }
