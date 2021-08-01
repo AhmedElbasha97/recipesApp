@@ -78,7 +78,7 @@
         <scene sceneID="nCl-T8-bt1">
             <objects>
                 <viewController id="rva-E4-NG7" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WSY-IP-loh">
+                    <view key="view" contentMode="scaleToFill" id="WSY-IP-loh" customClass="recipDetailsView" customModule="recipesApp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -92,27 +92,25 @@
                                                 <rect key="frame" x="-1.5" y="0.0" width="397" height="237"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvZ-Is-dle">
-                                                <rect key="frame" x="8" y="260" width="378" height="81"/>
+                                                <rect key="frame" x="-1.5" y="260" width="378" height="81"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOf-wz-TqH">
-                                                <rect key="frame" x="8" y="368" width="378" height="296"/>
+                                                <rect key="frame" x="-1.5" y="368" width="378" height="296"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHZ-xA-Jc2">
-                                                <rect key="frame" x="4" y="672" width="386" height="76"/>
+                                                <rect key="frame" x="-5.5" y="672" width="386" height="76"/>
                                                 <state key="normal" title="Button"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="qB2-Q8-gis" firstAttribute="height" secondItem="KO7-Ns-Lxn" secondAttribute="height" multiplier="0.313492" id="1Rz-1j-tTp"/>
-                                            <constraint firstItem="bvZ-Is-dle" firstAttribute="centerX" secondItem="qB2-Q8-gis" secondAttribute="centerX" id="2We-n1-X6t"/>
-                                            <constraint firstItem="yOf-wz-TqH" firstAttribute="centerX" secondItem="bvZ-Is-dle" secondAttribute="centerX" id="2ZT-Sc-lRg"/>
                                             <constraint firstItem="bvZ-Is-dle" firstAttribute="top" secondItem="qB2-Q8-gis" secondAttribute="bottom" constant="23" id="5aT-gh-M8e"/>
                                             <constraint firstItem="LHZ-xA-Jc2" firstAttribute="top" secondItem="yOf-wz-TqH" secondAttribute="bottom" constant="8" id="6PO-aY-jmy"/>
                                             <constraint firstAttribute="bottom" secondItem="LHZ-xA-Jc2" secondAttribute="bottom" constant="8" id="7mx-hy-toU"/>
@@ -121,6 +119,7 @@
                                             <constraint firstItem="yOf-wz-TqH" firstAttribute="leading" secondItem="bvZ-Is-dle" secondAttribute="trailing" constant="-378" id="EfG-mw-Qhc"/>
                                             <constraint firstItem="yOf-wz-TqH" firstAttribute="height" secondItem="KO7-Ns-Lxn" secondAttribute="height" multiplier="0.391534" id="Pj8-9u-cFJ"/>
                                             <constraint firstItem="qB2-Q8-gis" firstAttribute="top" secondItem="KO7-Ns-Lxn" secondAttribute="top" id="RXk-6M-ttO"/>
+                                            <constraint firstItem="bvZ-Is-dle" firstAttribute="leading" secondItem="qB2-Q8-gis" secondAttribute="leading" id="Uco-Ua-pqB"/>
                                             <constraint firstItem="LHZ-xA-Jc2" firstAttribute="centerX" secondItem="yOf-wz-TqH" secondAttribute="centerX" id="Y2V-ZD-WAE"/>
                                             <constraint firstItem="yOf-wz-TqH" firstAttribute="top" secondItem="bvZ-Is-dle" secondAttribute="bottom" constant="27" id="YvM-vz-Xhg"/>
                                             <constraint firstItem="LHZ-xA-Jc2" firstAttribute="width" secondItem="KO7-Ns-Lxn" secondAttribute="width" multiplier="0.979695" id="bHK-pZ-Q1V"/>
@@ -152,6 +151,12 @@
                             <constraint firstItem="H3M-Bw-mlG" firstAttribute="centerY" secondItem="WSY-IP-loh" secondAttribute="centerY" id="p8b-2A-N6S"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bYM-jg-YLB"/>
+                        <connections>
+                            <outlet property="recipeDetailsButton" destination="LHZ-xA-Jc2" id="Lz0-Uf-vMS"/>
+                            <outlet property="recipeDetailsTitleLabel" destination="bvZ-Is-dle" id="MQS-Vx-MI3"/>
+                            <outlet property="recipeDetalsImageView" destination="qB2-Q8-gis" id="UbI-Pa-a2e"/>
+                            <outlet property="rwecipeDetailsInstrictionLabel" destination="yOf-wz-TqH" id="1Wr-dB-tdt"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nDd-XJ-PRz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
