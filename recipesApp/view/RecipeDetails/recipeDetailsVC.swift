@@ -27,8 +27,10 @@ class RecipeDetailsVC: UIViewController {
         super.viewDidLoad()
         self.viewModel?.getDataOfDetailsScreen(url: self.url)
         self.recipeDetailsView.setUp(view: recipeDetailsView)
-        self.setupNavigationItems(backAction: .popUpCurrent, haveBackBTN: true, title: "recipe Details", view: recipeDetailsView)
-        self.setUpNavBar()
+        self.setupNavigationItems(backAction: .popUpCurrent, haveBackBTN: true, title: "recipe Details", view: recipeDetailsView) {
+            () in self.setUpNavBar()
+        }
+        
         
         // Do any additional setup after loading the view.
     }
@@ -48,11 +50,11 @@ class RecipeDetailsVC: UIViewController {
 }
 extension RecipeDetailsVC{
     func setUpNavBar(){
-         let SharingItem = UIBarButtonItem(image: UIImage.init(named: "sharingBTN"), style: .done, target: self, action: #selector(sharing))
-            SharingItem.tintColor = UIColor.gray
-            let rightPadding = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-            rightPadding.width = 18
-            navigationItem.rightBarButtonItems = [rightPadding, SharingItem]
+          let SharingItem = UIBarButtonItem(image: UIImage.init(named: "share"), style: .done, target: self, action: #selector(sharing))
+             SharingItem.tintColor = UIColor.gray
+         let rightPadding = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+             rightPadding.width = 18
+        navigationItem.rightBarButtonItems = [rightPadding,SharingItem]
 
     }
     
@@ -76,6 +78,7 @@ extension RecipeDetailsVC: RecipeDetailsVCProtocol {
         self.recipeDetailsView.rwecipeDetailsInstrictionLabel.text = ingridients
     }
     func presenterOfSharingOption(view: UIActivityViewController) {
+        view.isModalInPresentation = true
         view.popoverPresentationController?.sourceView = self.view
         self.present(view, animated: true, completion: nil)
     }
@@ -85,11 +88,11 @@ extension RecipeDetailsVC: RecipeDetailsVCProtocol {
     }
     
     func showloader() {
-        self.showLoader()
+     self.view.showLoader()
     }
     
     func hideLoader() {
-        self.popUpLoader()
+         self.view.hideLoader()
     }
     
     func showAlert(message: String) {

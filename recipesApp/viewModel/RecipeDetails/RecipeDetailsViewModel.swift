@@ -16,10 +16,7 @@ protocol RecipeDetailsViewModelProtocol {
 }
 class RecipeDetailsViewModel{
     private weak var view: RecipeDetailsVCProtocol?
-    var arrOfIngredient: [String] = []
-    var title = ""
     var urlOfRecipe = ""
-    var imageURL = ""
     var recipeURL = ""
     // MARK:- Life Cycle Methods
     init(view: RecipeDetailsVCProtocol) {
@@ -52,6 +49,7 @@ extension RecipeDetailsViewModel{
         
     }
     private func getData(url:String){
+        
         self.view?.showloader()
         APIManager.RecipesDetails() { (response) in
         switch response{
@@ -62,7 +60,7 @@ extension RecipeDetailsViewModel{
             self.getImageOfRecipe(path: data.recipe?.image ?? "")
            
             self.urlOfRecipe = data.recipe?.url ?? ""
-            self.recipeURL = data.links?.linksSelf?.href ?? ""
+            self.recipeURL = data.recipe?.uri ?? ""
         case .failure(let error):
             self.view?.hideLoader()
             self.view?.showAlert(message: "\(error.localizedDescription)")
@@ -71,10 +69,11 @@ extension RecipeDetailsViewModel{
        }
          self.view?.hideLoader()
     }
+
     private func sharingRecipeURL(url:String){
-        let someText:String = "this recipe is from greatest recipe app"
+        
         let objectsToShare:URL = URL(string: "\(url)")!
-        let sharedObjects:[AnyObject] = [objectsToShare as AnyObject,someText as AnyObject]
+        let sharedObjects:[AnyObject] = [objectsToShare as AnyObject]
         let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook,UIActivity.ActivityType.postToTwitter,UIActivity.ActivityType.mail]
         self.view?.presenterOfSharingOption(view: activityViewController)

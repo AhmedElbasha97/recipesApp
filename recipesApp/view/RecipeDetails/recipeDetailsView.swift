@@ -14,7 +14,7 @@ class  recipDetailsView: UIView {
     @IBOutlet weak var recipeDetailsButton: UIButton!
         func setUp(view: UIView){
             shapeTheBTN(BTN: recipeDetailsButton, titleOfTheButton: "Recipe Site", sizeOfTheFont: 20.0)
-         setUpUILabael(size: 30.0, isBold: true, Textolor: UIColor.black, label: recipeDetailsTitleLabel)
+         setUpUILabael(size: 25.0, isBold: true, Textolor: UIColor.black, label: recipeDetailsTitleLabel)
          setUpUILabael(size: 20.0, isBold: false, Textolor: UIColor.black, label: rwecipeDetailsInstrictionLabel)
             
             }
@@ -28,8 +28,9 @@ class  recipDetailsView: UIView {
 extension recipDetailsView{
     private func shapeTheBTN(BTN: UIButton,titleOfTheButton:String, sizeOfTheFont: CGFloat){
         BTN.setTitle("\(titleOfTheButton)", for: .normal)
+        BTN.tintColor = UIColor.darkGray
         BTN.backgroundColor = .clear
-        BTN.layer.cornerRadius = BTN.frame.height / 2
+        BTN.layer.cornerRadius = BTN.frame.height / 4
         BTN.layer.borderWidth = 4
         BTN.titleLabel?.font = UIFont.systemFont(ofSize: sizeOfTheFont)
         BTN.layer.borderColor = UIColor.darkGray.cgColor

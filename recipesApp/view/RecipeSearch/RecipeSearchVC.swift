@@ -26,7 +26,9 @@ class RecipeSearchVC: UIViewController {
         self.viewModel = recipeSearchViewModel(view: self)
         RecipeSearchView.searchRecipeSugmentedController.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
         RecipeSearchView.setUp(view: RecipeSearchView)
-        self.setupNavigationItems(backAction: .dismissCurrent, haveBackBTN: false, title: "Recipe Search", view: RecipeSearchView)
+        self.setupNavigationItems(backAction: .dismissCurrent, haveBackBTN: false, title: "Recipe Search", view: RecipeSearchView){
+            () in print("hi")
+        }
         setUpTableView()
         setupSearchBarView()
     }
@@ -79,11 +81,11 @@ extension RecipeSearchVC: RecipeSearchVCProtocol {
     }
     
     func showloader() {
-        self.showLoader()
+        self.view.showLoader()
     }
     
     func hideLoader() {
-        self.terminateLoader()
+       self.view.hideLoader()
     }
     
     func showAlert(message: String) {

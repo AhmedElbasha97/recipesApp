@@ -26,7 +26,14 @@ class recipeSearchViewModel{
     }
 }
 extension recipeSearchViewModel{
+    func isEmptySearch(Search: String?) -> Bool {
+        guard let Search = Search?.trimmed, !Search.isEmpty else {
+            return false
+        }
+        return true
+    }
      func searchForRecipe(searchKeyWord:String,filterIndex:String){
+        if (self.isEmptySearch(Search: searchKeyWord)) {
         self.view?.showloader()
         APIManager.SearchForRecipes(search: searchKeyWord, kind: filterIndex) { (response) in
             switch response{
@@ -50,9 +57,14 @@ extension recipeSearchViewModel{
                 self.view?.showAlert(message: "\(error.localizedDescription)")
             print(error)
             }
-
+            }
+        }else{
+            self.view?.showAlert(message: "there's no text to search about")
         }
     }
+    
+
+    
     func AnothePage() {
         self.view?.showloader()
         if (count > theTotalNumOfItems){

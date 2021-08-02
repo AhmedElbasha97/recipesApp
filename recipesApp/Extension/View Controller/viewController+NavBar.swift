@@ -13,7 +13,7 @@ extension UIViewController{
         case dismissCurrent
         case popUpCurrent
     }
-    func setupNavigationItems(backAction: Back, haveBackBTN: Bool,title: String, view: UIView) {
+    func setupNavigationItems(backAction: Back, haveBackBTN: Bool,title: String, view: UIView,completion: @escaping () -> Void) {
         self.navigationItem.title = title
         self.navigationController?.navigationBar.clipsToBounds = true
         self.navigationController?.navigationBar.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
@@ -28,6 +28,7 @@ extension UIViewController{
            leftPadding.width = 18
            navigationItem.leftBarButtonItems = [leftPadding, backItem]
         }
+       completion()
        }
        
        @objc func popUpCurrent() {
