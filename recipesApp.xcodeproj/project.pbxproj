@@ -10,8 +10,6 @@
 		1B1C6C92014F7E961BED4935 /* Pods_recipesApp_recipesAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778A75FF187CD76913F40DDC /* Pods_recipesApp_recipesAppUITests.framework */; };
 		2AA456AE41A5B8A168A3A5BE /* Pods_recipesAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1214ECDE51245C1411F68DDE /* Pods_recipesAppTests.framework */; };
 		7E3E028D26B0D71F002C1B3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3E028C26B0D71F002C1B3F /* AppDelegate.swift */; };
-		7E3E028F26B0D71F002C1B3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3E028E26B0D71F002C1B3F /* SceneDelegate.swift */; };
-		7E3E029126B0D71F002C1B3F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3E029026B0D71F002C1B3F /* ViewController.swift */; };
 		7E3E029426B0D71F002C1B3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E3E029226B0D71F002C1B3F /* Main.storyboard */; };
 		7E3E029626B0D726002C1B3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E3E029526B0D726002C1B3F /* Assets.xcassets */; };
 		7E3E029926B0D726002C1B3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E3E029726B0D726002C1B3F /* LaunchScreen.storyboard */; };
@@ -37,6 +35,7 @@
 		7E911B6026B4618100F38656 /* recipeSearchTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E911B5F26B4618100F38656 /* recipeSearchTableViewCellViewModel.swift */; };
 		EA299E0B17403BC044E4D35B /* Pods_recipesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A87DDD61155EF5186BEB21CC /* Pods_recipesApp.framework */; };
 		EF4C53A826B82E580046AC24 /* String+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4C53A726B82E580046AC24 /* String+Trimming.swift */; };
+		EF4C53AC26B847E90046AC24 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4C53AB26B847E90046AC24 /* DataBaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +63,6 @@
 		778A75FF187CD76913F40DDC /* Pods_recipesApp_recipesAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_recipesApp_recipesAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E3E028926B0D71F002C1B3F /* recipesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = recipesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E3E028C26B0D71F002C1B3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7E3E028E26B0D71F002C1B3F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7E3E029026B0D71F002C1B3F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7E3E029326B0D71F002C1B3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7E3E029526B0D726002C1B3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E3E029826B0D726002C1B3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,6 +97,7 @@
 		A87DDD61155EF5186BEB21CC /* Pods_recipesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_recipesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BACBE3C3BC9808B0E6211C /* Pods-recipesApp-recipesAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipesApp-recipesAppUITests.release.xcconfig"; path = "Target Support Files/Pods-recipesApp-recipesAppUITests/Pods-recipesApp-recipesAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EF4C53A726B82E580046AC24 /* String+Trimming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Trimming.swift"; sourceTree = "<group>"; };
+		EF4C53AB26B847E90046AC24 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,16 +166,14 @@
 		7E3E028B26B0D71F002C1B3F /* recipesApp */ = {
 			isa = PBXGroup;
 			children = (
+				EF4C53AA26B847CA0046AC24 /* Manager */,
 				EF4C53A926B82FEC0046AC24 /* Shared */,
 				7E705E9C26B34B94009A1692 /* Extension */,
 				7E3E02CE26B0F708002C1B3F /* Models */,
 				7E3E02CB26B0F05E002C1B3F /* Utilities */,
 				7E3E02BD26B0DA7A002C1B3F /* Networking */,
-				7E3E028C26B0D71F002C1B3F /* AppDelegate.swift */,
 				7E83E96D26B3333F000972E5 /* viewModel */,
-				7E3E028E26B0D71F002C1B3F /* SceneDelegate.swift */,
 				7E83E96E26B336BB000972E5 /* Resources */,
-				7E3E029026B0D71F002C1B3F /* ViewController.swift */,
 				7E83E96C26B33323000972E5 /* view */,
 				7E3E029526B0D726002C1B3F /* Assets.xcassets */,
 				7E3E029726B0D726002C1B3F /* LaunchScreen.storyboard */,
@@ -367,8 +363,17 @@
 		EF4C53A926B82FEC0046AC24 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				7E3E028C26B0D71F002C1B3F /* AppDelegate.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		EF4C53AA26B847CA0046AC24 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				EF4C53AB26B847E90046AC24 /* DataBaseManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -615,8 +620,8 @@
 				7E67F03F26B64D640092ECC5 /* RecipeDetailsViewModel.swift in Sources */,
 				7E820D0226B3795600B0B7C1 /* recipeSearchViewModel.swift in Sources */,
 				7E911B5D26B4513800F38656 /* viewController+Alert.swift in Sources */,
+				EF4C53AC26B847E90046AC24 /* DataBaseManager.swift in Sources */,
 				7E820CFB26B3580700B0B7C1 /* UIView+ProgressLoader.swift in Sources */,
-				7E3E029126B0D71F002C1B3F /* ViewController.swift in Sources */,
 				7E705EA326B34D91009A1692 /* recipeSearchTableViewCell.swift in Sources */,
 				7E3E02BF26B0DAB4002C1B3F /* APIRouter.swift in Sources */,
 				7E911B6026B4618100F38656 /* recipeSearchTableViewCellViewModel.swift in Sources */,
@@ -627,7 +632,6 @@
 				7E3E02D026B0F73C002C1B3F /* reciepeSearchModel.swift in Sources */,
 				7E3E028D26B0D71F002C1B3F /* AppDelegate.swift in Sources */,
 				7E71771F26B4B8E7000CB97A /* UITableView+UITableViewCell.swift in Sources */,
-				7E3E028F26B0D71F002C1B3F /* SceneDelegate.swift in Sources */,
 				7E67F03926B62CBE0092ECC5 /* recipeDetailsView.swift in Sources */,
 				7E83E97226B33BE5000972E5 /* RecipeSearchVC.swift in Sources */,
 				7E3E02CD26B0F076002C1B3F /* Constant.swift in Sources */,
