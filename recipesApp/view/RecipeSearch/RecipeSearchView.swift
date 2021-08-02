@@ -31,7 +31,6 @@ class RecipeSearchView: UIView{
         searchRecipeTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         searchRecipeTableView.backgroundColor = .clear
         searchRecipeTableView.separatorStyle = .none
-        searchRecipeTableView.allowsSelection = false
     }
     //MARK:- set up Search bar
    private func setupSearchBarView(){

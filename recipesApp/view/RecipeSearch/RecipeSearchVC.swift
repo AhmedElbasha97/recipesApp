@@ -63,6 +63,10 @@ extension RecipeSearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.viewModel.anotherPage(index:indexPath.row)
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipeDetailsVC = RecipeDetailsVC.create(URL: "      hvghcfghc")
+              navigationController?.pushViewController(recipeDetailsVC, animated: true)
+    }
 }
 
 extension RecipeSearchVC: RecipeSearchVCProtocol {

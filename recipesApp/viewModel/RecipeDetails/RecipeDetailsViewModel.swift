@@ -11,9 +11,6 @@ import SafariServices
 import SDWebImage
 protocol RecipeDetailsViewModelProtocol {
     func getDataOfDetailsScreen(url:String)
-    func recipeTitle() -> String
-    func recipeIngridients() -> String
-    func recipeImage(completion: @escaping (UIImage?) -> Void)
     func recipeUrlOpener()
     func sharingOption()
 }
@@ -39,19 +36,19 @@ extension RecipeDetailsViewModel{
             view?.presenterofWeb(view: vc)
         }
     }
-    private func getImageOfRecipe(path: String, completion: @escaping (UIImage?) -> Void) {
+    private func getImageOfRecipe(path: String) {
          SDWebImageManager.shared.loadImage(with: URL(string: path), options: .highPriority, progress: nil) { (image, _, error, _, _, _) in
          if let error = error {
               self.view?.showAlert(message: "\(error.localizedDescription)")
          } else if let image = image {
-             completion(image)
+            self.view?.getRecipeImage(image: image)
          }
 
          }
      }
-    private func returnIngridientsEachNewLine(arrOfStr: [String]) -> String{
+    private func returnIngridientsEachNewLine(arrOfStr: [String]){
         let string = arrOfStr.joined(separator: "\u{0085}")
-        return string
+        self.view?.getRecipeIngridients(ingridients: string)
         
     }
     private func getData(url:String){
@@ -59,16 +56,20 @@ extension RecipeDetailsViewModel{
         APIManager.RecipesDetails() { (response) in
         switch response{
         case .success(let data):
-            self.arrOfIngredient = data.recipe?.ingredientLines ?? []
-            self.imageURL = data.recipe?.image ?? ""
+            
+            self.returnIngridientsEachNewLine(arrOfStr: data.recipe?.ingredientLines ?? [])
+            self.view?.getRecipeLabel(title: data.recipe?.label ?? "")
+            self.getImageOfRecipe(path: data.recipe?.image ?? "")
+           
             self.urlOfRecipe = data.recipe?.url ?? ""
-            self.title = data.recipe?.label ?? ""
             self.recipeURL = data.links?.linksSelf?.href ?? ""
-            self.view?.hideLoader()
         case .failure(let error):
-             self.view?.showAlert(message: "\(error.localizedDescription)")
+            self.view?.hideLoader()
+            self.view?.showAlert(message: "\(error.localizedDescription)")
+             
         }
        }
+         self.view?.hideLoader()
     }
     private func sharingRecipeURL(url:String){
         let someText:String = "this recipe is from greatest recipe app"
@@ -88,19 +89,7 @@ extension RecipeDetailsViewModel: RecipeDetailsViewModelProtocol{
         self.getData(url: url)
     }
     
-    func recipeTitle() -> String {
-        return self.title
-    }
-    
-    func recipeIngridients() -> String {
-        return self.returnIngridientsEachNewLine(arrOfStr: self.arrOfIngredient)
-    }
-    
-    func recipeImage(completion: @escaping (UIImage?) -> Void) {
-        self.getImageOfRecipe(path: self.imageURL) { (image) in
-            completion(image)
-        }
-    }
+
     
     func recipeUrlOpener() {
         self.showRecipe(url: self.urlOfRecipe)

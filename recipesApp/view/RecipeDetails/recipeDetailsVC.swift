@@ -10,7 +10,10 @@ import UIKit
 import SafariServices
 protocol RecipeDetailsVCProtocol: class {
     func showloader()
+    func getRecipeImage(image:UIImage)
+    func getRecipeLabel(title: String)
     func hideLoader()
+    func getRecipeIngridients(ingridients: String)
     func showAlert(message: String)
     func presenterofWeb(view: SFSafariViewController)
     func presenterOfSharingOption(view:UIActivityViewController)
@@ -18,13 +21,14 @@ protocol RecipeDetailsVCProtocol: class {
 }
 class RecipeDetailsVC: UIViewController {
     @IBOutlet var recipeDetailsView: recipDetailsView!
+    var url: String!
     private var viewModel: RecipeDetailsViewModelProtocol?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel?.getDataOfDetailsScreen(url: self.url)
         self.recipeDetailsView.setUp(view: recipeDetailsView)
-        self.setupNavigationItems(backAction: .dismissCurrent, haveBackBTN: true, title: "recipe Details", view: recipeDetailsView)
+        self.setupNavigationItems(backAction: .popUpCurrent, haveBackBTN: true, title: "recipe Details", view: recipeDetailsView)
         self.setUpNavBar()
-        self.setUpData()
         
         // Do any additional setup after loading the view.
     }
@@ -33,7 +37,8 @@ class RecipeDetailsVC: UIViewController {
       let recipeDetailsVC: RecipeDetailsVC = UIViewController.create(storyboardName: Storyboards.main, identifier:
                  ViewControllers.recipeDetailsVC)
         recipeDetailsVC.viewModel = RecipeDetailsViewModel(view: recipeDetailsVC)
-        recipeDetailsVC.viewModel?.getDataOfDetailsScreen(url: URL)
+        recipeDetailsVC.url = URL
+       
              return recipeDetailsVC
          }
     
@@ -55,14 +60,21 @@ extension RecipeDetailsVC{
         self.viewModel?.sharingOption()
     }
     
-    func setUpData(){
-        self.viewModel?.recipeImage(completion: { (image) in
-            self.recipeDetailsView.ConfigureData(recipeImage: image!, recipeTitle: self.viewModel?.recipeTitle() ?? "", recipeIngridients: self.viewModel?.recipeIngridients() ?? "")
-        })
-    }
+
 
 }
 extension RecipeDetailsVC: RecipeDetailsVCProtocol {
+    func getRecipeImage(image:UIImage){
+        self.recipeDetailsView.recipeDetalsImageView.image = image
+    }
+    
+    func getRecipeLabel(title: String) {
+        self.recipeDetailsView.recipeDetailsTitleLabel.text = title
+    }
+     
+    func getRecipeIngridients(ingridients: String) {
+        self.recipeDetailsView.rwecipeDetailsInstrictionLabel.text = ingridients
+    }
     func presenterOfSharingOption(view: UIActivityViewController) {
         view.popoverPresentationController?.sourceView = self.view
         self.present(view, animated: true, completion: nil)
@@ -77,7 +89,7 @@ extension RecipeDetailsVC: RecipeDetailsVCProtocol {
     }
     
     func hideLoader() {
-        self.terminateLoader()
+        self.popUpLoader()
     }
     
     func showAlert(message: String) {

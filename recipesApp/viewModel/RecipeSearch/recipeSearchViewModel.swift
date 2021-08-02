@@ -54,19 +54,21 @@ extension recipeSearchViewModel{
         }
     }
     func AnothePage() {
+        self.view?.showloader()
         if (count > theTotalNumOfItems){
             
         }else{
             APIManager.paginationForSearchRecipes(url:self.urlOfNextPage) { (response) in
         switch response{
         case .success(let data):
-            self.count = data.count ?? 0
+            print("in pagination")
+            self.count = data.to ?? 0
+            self.urlOfNextPage = data.links?.next?.href ?? " "
             for data in data.hits ?? []{
-                self.view?.hideLoader()
-                
             self.arrOfRecipe.append(data)
-            self.view?.reloadData()
             }
+            self.view?.hideLoader()
+             self.view?.reloadData()
         print(data)
         case .failure(let error):
             self.view?.hideLoader()

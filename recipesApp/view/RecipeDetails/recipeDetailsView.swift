@@ -36,8 +36,11 @@ extension recipDetailsView{
         }
     private func setUpUILabael(size: CGFloat, isBold: Bool, Textolor: UIColor,label:UILabel){
           label.textColor = Textolor
+        label.textAlignment = .center
           if isBold {
               label.font = UIFont.boldSystemFont(ofSize: size)
+            label.sizeToFit()
+            label.numberOfLines = 0
           } else {
             label.sizeToFit()
             label.numberOfLines = 0

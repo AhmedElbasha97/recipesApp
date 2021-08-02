@@ -37,4 +37,7 @@ extension UIViewController{
   func terminateLoader(){
     ProgressDialog.alert.dismiss(animated: true, completion: nil)
   }
+    func popUpLoader() {
+        ProgressDialog.
+    }
 }
