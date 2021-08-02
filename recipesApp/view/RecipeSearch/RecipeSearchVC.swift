@@ -12,6 +12,7 @@ protocol RecipeSearchVCProtocol: class {
     func hideLoader()
     func reloadData()
     func showNoDataImage()
+    func hideNoDataImage()
     func showAlert(message: String)
      
 }
@@ -25,7 +26,9 @@ class RecipeSearchVC: UIViewController {
         self.viewModel = recipeSearchViewModel(view: self)
         RecipeSearchView.searchRecipeSugmentedController.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
         RecipeSearchView.setUp(view: RecipeSearchView)
-        self.setupNavController(title: "Recipe Search", view: RecipeSearchView)
+        self.setupNavigationItems(backAction: .dismissCurrent, haveBackBTN: false, title: "Recipe Search", view: RecipeSearchView){
+            () in print("hi")
+        }
         setUpTableView()
         setupSearchBarView()
     }
@@ -62,19 +65,27 @@ extension RecipeSearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.viewModel.anotherPage(index:indexPath.row)
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipeDetailsVC = RecipeDetailsVC.create(URL: "      hvghcfghc")
+              navigationController?.pushViewController(recipeDetailsVC, animated: true)
+    }
 }
 
 extension RecipeSearchVC: RecipeSearchVCProtocol {
+    func hideNoDataImage() {
+       RecipeSearchView.hideNoDataImage()
+    }
+    
     func showNoDataImage() {
         RecipeSearchView.showNoDataImage()
     }
     
     func showloader() {
-        self.showLoader()
+        self.view.showLoader()
     }
     
     func hideLoader() {
-        self.terminateLoader()
+       self.view.hideLoader()
     }
     
     func showAlert(message: String) {

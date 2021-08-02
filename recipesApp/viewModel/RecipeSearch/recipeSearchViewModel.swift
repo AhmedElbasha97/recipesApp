@@ -26,20 +26,29 @@ class recipeSearchViewModel{
     }
 }
 extension recipeSearchViewModel{
+    func isEmptySearch(Search: String?) -> Bool {
+        guard let Search = Search?.trimmed, !Search.isEmpty else {
+            return false
+        }
+        return true
+    }
      func searchForRecipe(searchKeyWord:String,filterIndex:String){
+        if (self.isEmptySearch(Search: searchKeyWord)) {
         self.view?.showloader()
         APIManager.SearchForRecipes(search: searchKeyWord, kind: filterIndex) { (response) in
             switch response{
             case .success(let data):
+                print(data.count ?? 0)
                 if data.count == 0{
                 self.view?.showNoDataImage()
                 self.view?.hideLoader()
                 self.view?.showAlert(message: "There's No Data To Show")
                 }else{
-                self.arrOfRecipe=data.hits
+                    self.view?.hideNoDataImage()
+                self.arrOfRecipe=data.hits ?? []
                 self.count = data.to ?? 0
                 self.theTotalNumOfItems = data.count ?? 0
-                self.urlOfNextPage = data.links?.next.href ?? " "
+                    self.urlOfNextPage = data.links?.next?.href ?? " "
                 self.view?.hideLoader()
                 self.view?.reloadData()
                 }
@@ -48,21 +57,30 @@ extension recipeSearchViewModel{
                 self.view?.showAlert(message: "\(error.localizedDescription)")
             print(error)
             }
-
+            }
+        }else{
+            self.view?.showAlert(message: "there's no text to search about")
         }
     }
+    
+
+    
     func AnothePage() {
+        self.view?.showloader()
         if (count > theTotalNumOfItems){
             
         }else{
             APIManager.paginationForSearchRecipes(url:self.urlOfNextPage) { (response) in
         switch response{
         case .success(let data):
-            for data in data.hits{
-                self.view?.hideLoader()
+            print("in pagination")
+            self.count = data.to ?? 0
+            self.urlOfNextPage = data.links?.next?.href ?? " "
+            for data in data.hits ?? []{
             self.arrOfRecipe.append(data)
-            self.view?.reloadData()
             }
+            self.view?.hideLoader()
+             self.view?.reloadData()
         print(data)
         case .failure(let error):
             self.view?.hideLoader()

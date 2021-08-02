@@ -8,45 +8,68 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//               APIManager.SearchForRecipes() { (response) in
-//                switch response{
-//                case .success(let data):
-//                    print(data)
+//class ViewController: UIViewController {
 //
-//                case .failure(let error):
-//                print(error)
-//                }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+////               APIManager.SearchForRecipes() { (response) in
+////                switch response{
+////                case .success(let data):
+////                    print(data)
+////
+////                case .failure(let error):
+////                print(error)
+////                }
+////
+////            }
+////        APIManager.RecipesDetails() { (response) in
+////            switch response{
+////            case .success(let data):
+////                print(data.recipe)
+////            case .failure(let error):
+////            print(error)
+////            }
+////
+////        }
+////           APIManager.paginationForSearchRecipes() { (response) in
+////            switch response{
+////            case .success(let data):
+////             print(data)
+////            case .failure(let error):
+////            print(error)
+////            }
+////
+////        }
+////
+////        }
 //
-//            }
-//        APIManager.RecipesDetails() { (response) in
-//            switch response{
-//            case .success(let data):
-//                print(data.recipe)
-//            case .failure(let error):
-//            print(error)
-//            }
-//            
-//        }
-//           APIManager.paginationForSearchRecipes() { (response) in
-//            switch response{
-//            case .success(let data):
-//             print(data)
-//            case .failure(let error):
-//            print(error)
-//            }
+//    }
+//        // Do any additional setup after loading the view.
+//    }
 //
-//        }
 //
-//        }
-            
-    }
-        // Do any additional setup after loading the view.
-    }
+//
+//
+//class ViewController: UIViewController {
+//    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        
+//        let tapGesture = CustomTapGestureRecognizer(target: self,
+//                                                    action: #selector(tapSelector(sender:)))
+//        tapGesture.ourCustomValue = "This is a value we can set"
+//        
+//        self.view.addGestureRecognizer(tapGesture)
+//        
+//        // Do any additional setup after loading the view.
+//    }
+//    
+//    @objc
+//    func tapSelector(sender: CustomTapGestureRecognizer) {
+//        print(sender.ourCustomValue ?? "")
+//    }
+//}
 
-
-
-
+//class CustomTapGestureRecognizer: UITapGestureRecognizer {
+//    var ourCustomValue: String?
+//}

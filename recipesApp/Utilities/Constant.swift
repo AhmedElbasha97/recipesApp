@@ -7,6 +7,14 @@
 //
 
 import Foundation
+struct Storyboards {
+    static let main = "Main"
+}
+
+struct ViewControllers {
+    static let recipeDetailsVC = "RecipeDetailsVC"
+}
+
 struct PrametersKey {
     static let type = "type"
     static let search = "q"

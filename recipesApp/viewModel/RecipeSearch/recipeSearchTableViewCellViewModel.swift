@@ -34,7 +34,6 @@ extension recipeSearchTableViewCellViewModel{
         return healthString
     }
     private func getImageOfRecipe(path: String, completion: @escaping (UIImage?) -> Void) {
-        
          SDWebImageManager.shared.loadImage(with: URL(string: path), options: .highPriority, progress: nil) { (image, _, error, _, _, _) in
          if let error = error {
              print(error.localizedDescription)
