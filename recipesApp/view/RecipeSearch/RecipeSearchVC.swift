@@ -14,16 +14,21 @@ protocol RecipeSearchVCProtocol: class {
     func showNoDataImage()
     func hideNoDataImage()
     func showAlert(message: String)
+    func showRecentSerchTableView()
+    func showRecipeTableView()
+    func reloadRecentSearch()
      
 }
 
 class RecipeSearchVC: UIViewController {
     @IBOutlet weak var RecipeSearchView: RecipeSearchView!
        var searchedText: String!
+    var anotherViewHasbeenDismised:Bool = false
     private var viewModel: recipeSearchViewModelProtocol!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = recipeSearchViewModel(view: self)
+        self.RecipeSearchView.recipeTableView()
         RecipeSearchView.searchRecipeSugmentedController.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
         RecipeSearchView.setUp(view: RecipeSearchView)
         self.setupNavigationItems(backAction: .dismissCurrent, haveBackBTN: false, title: "Recipe Search", view: RecipeSearchView){
@@ -32,6 +37,7 @@ class RecipeSearchVC: UIViewController {
         setUpTableView()
         setupSearchBarView()
     }
+
     @objc func indexChanged() {
         viewModel.searchForRecipes(searchKeyWord: searchedText, filterIndex: RecipeSearchView.searchRecipeSugmentedController.selectedSegmentIndex)
            
@@ -43,6 +49,10 @@ extension RecipeSearchVC{
        RecipeSearchView.searchRecipeTableView.register(UINib(nibName: Cells.recipeSearchTableViewCell, bundle: nil), forCellReuseIdentifier: Cells.recipeSearchTableViewCell)
        RecipeSearchView.searchRecipeTableView.dataSource = self
        RecipeSearchView.searchRecipeTableView.delegate = self
+        RecipeSearchView.recentSearchTableView.register(UINib(nibName: Cells.recenSearchTableViewCell, bundle: nil), forCellReuseIdentifier: Cells.recenSearchTableViewCell)
+        RecipeSearchView.recentSearchTableView.dataSource = self
+        RecipeSearchView.recentSearchTableView.delegate = self
+        
     }
     private func setupSearchBarView(){
         RecipeSearchView.searchRecipeSearchBar.delegate = self
@@ -50,28 +60,58 @@ extension RecipeSearchVC{
 }
 extension RecipeSearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.counter()
+        return tableView == self.RecipeSearchView.searchRecipeTableView ? self.viewModel.counter(): self.viewModel.counterforRecentSearchData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var returnCell = UITableViewCell()
+        if (tableView == self.RecipeSearchView.searchRecipeTableView){
         guard let cell = self.RecipeSearchView.searchRecipeTableView.dequeueReusableCell(withIdentifier: Cells.recipeSearchTableViewCell , for: indexPath) as? recipeSearchTableViewCell else {
             return UITableViewCell()
         }
         cell.shadowAndBorderForCell(yourTableViewCell: cell)
         cell.sendDataToViewModel(dataofTheCell: (viewModel?.sentData(index: indexPath.row) ?? nil)!)
-        return cell
+            returnCell = cell
+            
+        }else{
+            guard let cell = self.RecipeSearchView.recentSearchTableView.dequeueReusableCell(withIdentifier: Cells.recenSearchTableViewCell , for: indexPath) as? RecenSearchTableViewCell else {
+                      return UITableViewCell()
+                  }
+            cell.configure(recentSearcLabel: self.viewModel.getRecentSearchKeyWord(index: indexPath.row))
+            returnCell = cell
+        }
+        return returnCell
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.viewModel.anotherPage(index:indexPath.row)
+         if (tableView == self.RecipeSearchView.searchRecipeTableView){
+            self.viewModel.anotherPage(index:indexPath.row)}
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let recipeDetailsVC = RecipeDetailsVC.create(URL: "      hvghcfghc")
+         if (tableView == self.RecipeSearchView.searchRecipeTableView){
+        let recipeDetailsVC = RecipeDetailsVC.create(URL: viewModel?.sentData(index: indexPath.row).recipe?.url ?? "")
               navigationController?.pushViewController(recipeDetailsVC, animated: true)
+         }else{
+            self.searchedText = self.viewModel.getRecentSearchKeyWord(index: indexPath.row)
+            self.RecipeSearchView.searchRecipeSearchBar.text = self.viewModel.getRecentSearchKeyWord(index: indexPath.row)
+            indexChanged()
+        }
     }
 }
 
 extension RecipeSearchVC: RecipeSearchVCProtocol {
+    func reloadRecentSearch() {
+         RecipeSearchView.recentSearchTableView.reloadData()
+    }
+    
+    func showRecentSerchTableView() {
+        self.RecipeSearchView.searchTableView()
+    }
+    
+    func showRecipeTableView() {
+        self.RecipeSearchView.recipeTableView()
+    }
+    
     func hideNoDataImage() {
        RecipeSearchView.hideNoDataImage()
     }
@@ -97,16 +137,32 @@ extension RecipeSearchVC: RecipeSearchVCProtocol {
     }
 }
 extension RecipeSearchVC: UISearchBarDelegate {
+    func willChangeValue<Value>(for keyPath: __owned KeyPath<RecipeSearchVC, Value>) {
+        
+        self.viewModel.decideWhichTableViewToShow(anotherViewHasbeenDismised: false)
+        self.viewModel.getRecentSearchedData()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+         self.viewModel.decideWhichTableViewToShow(anotherViewHasbeenDismised: false)
+        self.viewModel.getRecentSearchedData()
+    }
     
-  
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if (RecipeSearchView.searchRecipeSearchBar.text != ""){
+            self.anotherViewHasbeenDismised = true
+        }else{
+            self.anotherViewHasbeenDismised = false
+        }
+        self.viewModel.decideWhichTableViewToShow(anotherViewHasbeenDismised: self.anotherViewHasbeenDismised)
+        self.viewModel.getRecentSearchedData()
+
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text =  RecipeSearchView.searchRecipeSearchBar.text else { return }
-       searchedText = text
-        if searchedText == ""{
-           
-        }
        
+        guard let text =  RecipeSearchView.searchRecipeSearchBar.text else { return }
+        
+       searchedText = text
         indexChanged()
     }
     

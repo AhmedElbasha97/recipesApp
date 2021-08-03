@@ -12,17 +12,24 @@ protocol recipeSearchViewModelProtocol {
     func counter()->Int
     func anotherPage(index:Int)
     func sentData(index:Int) -> Hit
+    func decideWhichTableViewToShow(anotherViewHasbeenDismised: Bool)
+    func counterforRecentSearchData() -> Int
+    func getRecentSearchKeyWord(index:Int) -> String
+    func getRecentSearchedData()
 }
 class recipeSearchViewModel{
     private weak var view: RecipeSearchVCProtocol?
+    var recentSearch:[String] = []
     var arrOfRecipe:[Hit] = []
     var count:Int = 0
     var theTotalNumOfItems:Int = 0
     var urlOfNextPage:String = ""
-    
+    let database = DatabaseManager.shared()
     // MARK:- Life Cycle Methods
     init(view: RecipeSearchVCProtocol) {
         self.view = view
+        database.searchDbConnection()
+        database.createSearchTable()
     }
 }
 extension recipeSearchViewModel{
@@ -32,24 +39,34 @@ extension recipeSearchViewModel{
         }
         return true
     }
+    
+    func getRecentSearchData(){
+        self.recentSearch = database.getSearchedData()
+        print(database.getSearchedData())
+        self.view?.reloadRecentSearch()
+    }
+    
      func searchForRecipe(searchKeyWord:String,filterIndex:String){
         if (self.isEmptySearch(Search: searchKeyWord)) {
         self.view?.showloader()
         APIManager.SearchForRecipes(search: searchKeyWord, kind: filterIndex) { (response) in
             switch response{
             case .success(let data):
+                self.database.insertSearchedData(dtext: searchKeyWord.lowercased())
                 print(data.count ?? 0)
                 if data.count == 0{
                 self.view?.showNoDataImage()
                 self.view?.hideLoader()
+                    self.view?.showRecipeTableView()
                 self.view?.showAlert(message: "There's No Data To Show")
                 }else{
-                    self.view?.hideNoDataImage()
+                self.view?.hideNoDataImage()
                 self.arrOfRecipe=data.hits ?? []
                 self.count = data.to ?? 0
                 self.theTotalNumOfItems = data.count ?? 0
                     self.urlOfNextPage = data.links?.next?.href ?? " "
                 self.view?.hideLoader()
+                    self.view?.showRecipeTableView()
                 self.view?.reloadData()
                 }
             case .failure(let error):
@@ -79,6 +96,7 @@ extension recipeSearchViewModel{
             for data in data.hits ?? []{
             self.arrOfRecipe.append(data)
             }
+            
             self.view?.hideLoader()
              self.view?.reloadData()
         print(data)
@@ -93,6 +111,31 @@ extension recipeSearchViewModel{
     }
 }
 extension recipeSearchViewModel: recipeSearchViewModelProtocol{
+    func getRecentSearchedData() {
+        self.getRecentSearchData()
+    }
+    
+    func decideWhichTableViewToShow(anotherViewHasbeenDismised: Bool) {
+               if ((database.isSearchedDataTableExists())&&(!anotherViewHasbeenDismised)){
+             self.view?.showRecentSerchTableView()
+         }else{
+             self.view?.showRecipeTableView()
+         }
+    }
+    
+    func getRecentSearchKeyWord(index: Int) -> String {
+        return self.recentSearch[index]
+    }
+    
+    
+    func counterforRecentSearchData() -> Int {
+        return self.recentSearch.count
+    }
+    
+    
+
+
+    
     func sentData(index: Int) -> Hit {
         return self.arrOfRecipe[index]
     }
@@ -116,7 +159,7 @@ extension recipeSearchViewModel: recipeSearchViewModelProtocol{
     func counter() -> Int {
         return arrOfRecipe.count
     }
-    
+ 
     func anotherPage(index:Int) {
         
         if (index>=(count-2)){

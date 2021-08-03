@@ -13,6 +13,8 @@ class RecipeSearchView: UIView{
     @IBOutlet weak var searchRecipeTableView: UITableView!
     @IBOutlet weak var searchRecipeSugmentedController: UISegmentedControl!
     @IBOutlet weak var noDataImageView: UIImageView!
+    @IBOutlet weak var recentSearchView: UIView!
+    @IBOutlet weak var recentSearchTableView: UITableView!
     func setUp(view: UIView){
      setUpTableView()
      setUpSegmentedController()
@@ -25,12 +27,30 @@ class RecipeSearchView: UIView{
     func hideNoDataImage(){
           noDataImageView.isHidden = true
       }
+    
+    func searchTableView(){
+        searchRecipeTableView.isHidden = true
+        searchRecipeSugmentedController.isHidden = true
+        recentSearchView.isHidden = false
+        recentSearchTableView.isHidden = false
+    }
+    
+    func recipeTableView(){
+        searchRecipeTableView.isHidden = false
+        searchRecipeSugmentedController.isHidden = false
+        recentSearchView.isHidden = true
+        recentSearchTableView.isHidden = true
+    }
+
 
     //MARK:- set Up Table View
     private func setUpTableView(){
         searchRecipeTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         searchRecipeTableView.backgroundColor = .clear
         searchRecipeTableView.separatorStyle = .none
+        recentSearchTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        recentSearchTableView.backgroundColor = .clear
+        recentSearchTableView.separatorStyle = .none
     }
     //MARK:- set up Search bar
    private func setupSearchBarView(){

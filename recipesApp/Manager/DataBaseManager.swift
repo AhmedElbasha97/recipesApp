@@ -39,6 +39,7 @@ class DatabaseManager {
         if isSearchedDataTableExists() == false {
             do {
                 try db?.run(searchedData.create { t in
+                    t.column(self.id, primaryKey: .autoincrement)
                     t.column(self.keyWord,unique: true)
                     print("table created")
                 })

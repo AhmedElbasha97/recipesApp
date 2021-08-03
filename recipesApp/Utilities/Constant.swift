@@ -33,5 +33,6 @@ struct type {
     static let pub = "public"
 }
 struct Cells {
+    static let recenSearchTableViewCell = "RecenSearchTableViewCell"
     static let recipeSearchTableViewCell = "recipeSearchTableViewCell"
 }
