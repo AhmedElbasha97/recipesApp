@@ -50,7 +50,9 @@ extension RecipeDetailsViewModel{
               self.view?.showAlert(message: "\(error.localizedDescription)")
          } else if let image = image {
             self.view?.getRecipeImage(image: image)
-         }
+         }else{
+            self.view?.getRecipeImage(image: UIImage.init(named: "noFoodImage")!)
+            }
 
          }
      }
