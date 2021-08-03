@@ -9,12 +9,14 @@
 import Foundation
 import UIKit
 class RecipeSearchView: UIView{
+     //MARK:- Outlets
     @IBOutlet weak var searchRecipeSearchBar: UISearchBar!
     @IBOutlet weak var searchRecipeTableView: UITableView!
     @IBOutlet weak var searchRecipeSugmentedController: UISegmentedControl!
     @IBOutlet weak var noDataImageView: UIImageView!
     @IBOutlet weak var recentSearchView: UIView!
     @IBOutlet weak var recentSearchTableView: UITableView!
+     //MARK:- lifeCycle func
     func setUp(view: UIView){
      setUpTableView()
      setUpSegmentedController()
@@ -41,8 +43,9 @@ class RecipeSearchView: UIView{
         recentSearchView.isHidden = true
         recentSearchTableView.isHidden = true
     }
-
-
+}
+//MARK:- private function
+extension RecipeSearchView{
     //MARK:- set Up Table View
     private func setUpTableView(){
         searchRecipeTableView.separatorStyle = UITableViewCell.SeparatorStyle.none

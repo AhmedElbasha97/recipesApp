@@ -20,6 +20,7 @@ class recipeSearchTableViewCellViewModel {
       }
 }
 extension recipeSearchTableViewCellViewModel{
+    
     private func setUpHealthLabelString(healthLabel:[String])-> String{
         var healthString = ""
               var i = 0
@@ -33,6 +34,7 @@ extension recipeSearchTableViewCellViewModel{
               }
         return healthString
     }
+    
     private func getImageOfRecipe(path: String, completion: @escaping (UIImage?) -> Void) {
          SDWebImageManager.shared.loadImage(with: URL(string: path), options: .highPriority, progress: nil) { (image, _, error, _, _, _) in
          if let error = error {
@@ -45,6 +47,7 @@ extension recipeSearchTableViewCellViewModel{
      }
     
 }
+
 extension recipeSearchTableViewCellViewModel: recipeSearchTableViewCellViewModelProtocol{
     func takeDataFromVC(data: Hit) {
         self.getImageOfRecipe(path: data.recipe?.image ?? "") { (image) in

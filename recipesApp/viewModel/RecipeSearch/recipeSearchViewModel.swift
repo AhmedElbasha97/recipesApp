@@ -18,6 +18,7 @@ protocol recipeSearchViewModelProtocol {
     func getRecentSearchedData()
 }
 class recipeSearchViewModel{
+    //MARK:- properties
     private weak var view: RecipeSearchVCProtocol?
     var recentSearch:[String] = []
     var arrOfRecipe:[Hit] = []
@@ -32,22 +33,21 @@ class recipeSearchViewModel{
         database.createSearchTable()
     }
 }
+//MARK:-private function
 extension recipeSearchViewModel{
-    func isEmptySearch(Search: String?) -> Bool {
-        guard let Search = Search?.trimmed, !Search.isEmpty else {
-            return false
-        }
-        return true
-    }
-    
-    func getRecentSearchData(){
+    //get data of recent search
+    private func getRecentSearchData(){
         self.recentSearch = database.getSearchedData()
         print(database.getSearchedData())
         self.view?.reloadRecentSearch()
     }
-    
-     func searchForRecipe(searchKeyWord:String,filterIndex:String){
-        if (self.isEmptySearch(Search: searchKeyWord)) {
+    //get data for recent search
+    private func searchForRecipe(searchKeyWord:String,filterIndex:String){
+        if (Validations.shared().isEmptySearch(SearchKeyWord: searchKeyWord)) {
+        if (Validations.shared().isValidSearch(SearchKewWord: searchKeyWord)) {
+            if !Reachability.isConnectedToNetwork(){
+                self.view?.showNoConnection()
+            }
         self.view?.showloader()
         APIManager.SearchForRecipes(search: searchKeyWord, kind: filterIndex) { (response) in
             switch response{
@@ -75,14 +75,19 @@ extension recipeSearchViewModel{
             print(error)
             }
             }
+ 
+        }else{
+            self.view?.showAlert(message: "this app only supprt english and any language will be add soon")
+        }
         }else{
             self.view?.showAlert(message: "there's no text to search about")
-        }
+             }
     }
-    
-
-    
-    func AnothePage() {
+    //get data of another page
+   private func AnothePage() {
+    if !Reachability.isConnectedToNetwork(){
+        self.view?.showNoConnection()
+    }
         self.view?.showloader()
         if (count > theTotalNumOfItems){
             
@@ -110,6 +115,7 @@ extension recipeSearchViewModel{
         }
     }
 }
+//MARK:- conform protocol
 extension recipeSearchViewModel: recipeSearchViewModelProtocol{
     func getRecentSearchedData() {
         self.getRecentSearchData()
@@ -132,13 +138,10 @@ extension recipeSearchViewModel: recipeSearchViewModelProtocol{
         return self.recentSearch.count
     }
     
-    
-
-
-    
     func sentData(index: Int) -> Hit {
         return self.arrOfRecipe[index]
     }
+    
     func searchForRecipes(searchKeyWord: String, filterIndex: Int) {
         switch filterIndex {
         case 1:

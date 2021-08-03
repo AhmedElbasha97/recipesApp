@@ -16,17 +16,26 @@ protocol RecipeSearchVCProtocol: class {
     func showAlert(message: String)
     func showRecentSerchTableView()
     func showRecipeTableView()
+    func showNoConnection()
     func reloadRecentSearch()
      
 }
 
 class RecipeSearchVC: UIViewController {
+    //MARK:- Outlets
     @IBOutlet weak var RecipeSearchView: RecipeSearchView!
-       var searchedText: String!
+    
+    // MARK:- Properties
+    var searchedText: String!
     var anotherViewHasbeenDismised:Bool = false
     private var viewModel: recipeSearchViewModelProtocol!
+    
+    // MARK:- LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        if !Reachability.isConnectedToNetwork(){
+             checkInternetConnection()
+        }
         self.viewModel = recipeSearchViewModel(view: self)
         self.RecipeSearchView.recipeTableView()
         RecipeSearchView.searchRecipeSugmentedController.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
@@ -37,14 +46,16 @@ class RecipeSearchVC: UIViewController {
         setUpTableView()
         setupSearchBarView()
     }
-
+   // MARK:- Public Methods
     @objc func indexChanged() {
         viewModel.searchForRecipes(searchKeyWord: searchedText, filterIndex: RecipeSearchView.searchRecipeSugmentedController.selectedSegmentIndex)
            
        }
 
 }
+// MARK:- Private Methods
 extension RecipeSearchVC{
+    
     private func setUpTableView(){
        RecipeSearchView.searchRecipeTableView.register(UINib(nibName: Cells.recipeSearchTableViewCell, bundle: nil), forCellReuseIdentifier: Cells.recipeSearchTableViewCell)
        RecipeSearchView.searchRecipeTableView.dataSource = self
@@ -54,16 +65,26 @@ extension RecipeSearchVC{
         RecipeSearchView.recentSearchTableView.delegate = self
         
     }
+    
+    private func checkInternetConnection(){
+        let internetConnectionViewController = InternetConnectionViewController.create()
+                   navigationController?.pushViewController(internetConnectionViewController, animated: true)
+    }
+    
     private func setupSearchBarView(){
         RecipeSearchView.searchRecipeSearchBar.delegate = self
     }
 }
+//MARK:- table view protcols
 extension RecipeSearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableView == self.RecipeSearchView.searchRecipeTableView ? self.viewModel.counter(): self.viewModel.counterforRecentSearchData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if !Reachability.isConnectedToNetwork(){
+            self.checkInternetConnection()
+        }
         var returnCell = UITableViewCell()
         if (tableView == self.RecipeSearchView.searchRecipeTableView){
         guard let cell = self.RecipeSearchView.searchRecipeTableView.dequeueReusableCell(withIdentifier: Cells.recipeSearchTableViewCell , for: indexPath) as? recipeSearchTableViewCell else {
@@ -89,7 +110,7 @@ extension RecipeSearchVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          if (tableView == self.RecipeSearchView.searchRecipeTableView){
-        let recipeDetailsVC = RecipeDetailsVC.create(URL: viewModel?.sentData(index: indexPath.row).recipe?.url ?? "")
+            let recipeDetailsVC = RecipeDetailsVC.create(URL: viewModel?.sentData(index: indexPath.row).links?.linksSelf?.href ?? "")
               navigationController?.pushViewController(recipeDetailsVC, animated: true)
          }else{
             self.searchedText = self.viewModel.getRecentSearchKeyWord(index: indexPath.row)
@@ -98,8 +119,13 @@ extension RecipeSearchVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-
+//MARK:- CONFORM PROTCOL
 extension RecipeSearchVC: RecipeSearchVCProtocol {
+    func showNoConnection() {
+    let internetConnectionViewController = InternetConnectionViewController.create()
+    navigationController?.pushViewController(internetConnectionViewController, animated: true)
+    }
+    
     func reloadRecentSearch() {
          RecipeSearchView.recentSearchTableView.reloadData()
     }
@@ -136,6 +162,7 @@ extension RecipeSearchVC: RecipeSearchVCProtocol {
         RecipeSearchView.searchRecipeTableView.reloadData()
     }
 }
+//MARK:- serchBar Protocols
 extension RecipeSearchVC: UISearchBarDelegate {
     func willChangeValue<Value>(for keyPath: __owned KeyPath<RecipeSearchVC, Value>) {
         

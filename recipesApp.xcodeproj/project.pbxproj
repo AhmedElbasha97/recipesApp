@@ -36,6 +36,11 @@
 		EA299E0B17403BC044E4D35B /* Pods_recipesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A87DDD61155EF5186BEB21CC /* Pods_recipesApp.framework */; };
 		EF4C53A826B82E580046AC24 /* String+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4C53A726B82E580046AC24 /* String+Trimming.swift */; };
 		EF4C53AC26B847E90046AC24 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4C53AB26B847E90046AC24 /* DataBaseManager.swift */; };
+		EF5AAD2226B9B257008D518F /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5AAD2126B9B257008D518F /* UserDefaultManager.swift */; };
+		EF5B5D1B26B98CCE0099049A /* InternetConnetionManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5B5D1A26B98CCE0099049A /* InternetConnetionManger.swift */; };
+		EF5B5D1E26B98D980099049A /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5B5D1D26B98D980099049A /* UIButton.swift */; };
+		EF5B5D2126B99D4E0099049A /* InternetConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5B5D2026B99D4E0099049A /* InternetConnectionViewController.swift */; };
+		EF5B5D2326B9A1BA0099049A /* ValidationManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5B5D2226B9A1BA0099049A /* ValidationManger.swift */; };
 		EF6CAA8426B8C5B300EFED5D /* RecenSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6CAA8226B8C5B300EFED5D /* RecenSearchTableViewCell.swift */; };
 		EF6CAA8526B8C5B300EFED5D /* RecenSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF6CAA8326B8C5B300EFED5D /* RecenSearchTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -100,6 +105,11 @@
 		D6BACBE3C3BC9808B0E6211C /* Pods-recipesApp-recipesAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipesApp-recipesAppUITests.release.xcconfig"; path = "Target Support Files/Pods-recipesApp-recipesAppUITests/Pods-recipesApp-recipesAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EF4C53A726B82E580046AC24 /* String+Trimming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Trimming.swift"; sourceTree = "<group>"; };
 		EF4C53AB26B847E90046AC24 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		EF5AAD2126B9B257008D518F /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		EF5B5D1A26B98CCE0099049A /* InternetConnetionManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnetionManger.swift; sourceTree = "<group>"; };
+		EF5B5D1D26B98D980099049A /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		EF5B5D2026B99D4E0099049A /* InternetConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionViewController.swift; sourceTree = "<group>"; };
+		EF5B5D2226B9A1BA0099049A /* ValidationManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManger.swift; sourceTree = "<group>"; };
 		EF6CAA8226B8C5B300EFED5D /* RecenSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecenSearchTableViewCell.swift; sourceTree = "<group>"; };
 		EF6CAA8326B8C5B300EFED5D /* RecenSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecenSearchTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -288,6 +298,8 @@
 		7E83E96C26B33323000972E5 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				EF5B5D1F26B99D150099049A /* InternetConnetion */,
+				EF5B5D1C26B98D810099049A /* customView */,
 				7E71772026B4D355000CB97A /* RecipeDetails */,
 				7E83E97026B33BAC000972E5 /* RecipeSearch */,
 			);
@@ -377,8 +389,27 @@
 			isa = PBXGroup;
 			children = (
 				EF4C53AB26B847E90046AC24 /* DataBaseManager.swift */,
+				EF5B5D1A26B98CCE0099049A /* InternetConnetionManger.swift */,
+				EF5B5D2226B9A1BA0099049A /* ValidationManger.swift */,
+				EF5AAD2126B9B257008D518F /* UserDefaultManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		EF5B5D1C26B98D810099049A /* customView */ = {
+			isa = PBXGroup;
+			children = (
+				EF5B5D1D26B98D980099049A /* UIButton.swift */,
+			);
+			path = customView;
+			sourceTree = "<group>";
+		};
+		EF5B5D1F26B99D150099049A /* InternetConnetion */ = {
+			isa = PBXGroup;
+			children = (
+				EF5B5D2026B99D4E0099049A /* InternetConnectionViewController.swift */,
+			);
+			path = InternetConnetion;
 			sourceTree = "<group>";
 		};
 		EF6CAA8126B8C56300EFED5D /* recentSearch */ = {
@@ -640,15 +671,20 @@
 				7E820CFB26B3580700B0B7C1 /* UIView+ProgressLoader.swift in Sources */,
 				7E705EA326B34D91009A1692 /* recipeSearchTableViewCell.swift in Sources */,
 				7E3E02BF26B0DAB4002C1B3F /* APIRouter.swift in Sources */,
+				EF5B5D2126B99D4E0099049A /* InternetConnectionViewController.swift in Sources */,
 				7E911B6026B4618100F38656 /* recipeSearchTableViewCellViewModel.swift in Sources */,
 				EF4C53A826B82E580046AC24 /* String+Trimming.swift in Sources */,
 				7E67F03B26B63B5B0092ECC5 /* recipeDetailsVC.swift in Sources */,
+				EF5B5D2326B9A1BA0099049A /* ValidationManger.swift in Sources */,
 				7E705E9F26B34BE3009A1692 /* viewController+NavBar.swift in Sources */,
 				7E3E02C126B0DACC002C1B3F /* APIManager.swift in Sources */,
 				7E3E02D026B0F73C002C1B3F /* reciepeSearchModel.swift in Sources */,
+				EF5B5D1E26B98D980099049A /* UIButton.swift in Sources */,
 				7E3E028D26B0D71F002C1B3F /* AppDelegate.swift in Sources */,
+				EF5B5D1B26B98CCE0099049A /* InternetConnetionManger.swift in Sources */,
 				7E71771F26B4B8E7000CB97A /* UITableView+UITableViewCell.swift in Sources */,
 				7E67F03926B62CBE0092ECC5 /* recipeDetailsView.swift in Sources */,
+				EF5AAD2226B9B257008D518F /* UserDefaultManager.swift in Sources */,
 				7E83E97226B33BE5000972E5 /* RecipeSearchVC.swift in Sources */,
 				7E3E02CD26B0F076002C1B3F /* Constant.swift in Sources */,
 				7E83E97426B33BFC000972E5 /* RecipeSearchView.swift in Sources */,

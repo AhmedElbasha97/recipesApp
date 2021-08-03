@@ -10,6 +10,7 @@ import UIKit
 import SafariServices
 protocol RecipeDetailsVCProtocol: class {
     func showloader()
+    func showNoConnection()
     func getRecipeImage(image:UIImage)
     func getRecipeLabel(title: String)
     func hideLoader()
@@ -20,27 +21,33 @@ protocol RecipeDetailsVCProtocol: class {
      
 }
 class RecipeDetailsVC: UIViewController {
+    //MARK:- Outlets
     @IBOutlet var recipeDetailsView: recipDetailsView!
+    
+    //MARK:- properties
     var url: String!
     private var viewModel: RecipeDetailsViewModelProtocol?
+    
+    //MARK:- lifecycle function
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel?.getDataOfDetailsScreen(url: self.url)
+        if !Reachability.isConnectedToNetwork(){
+             checkInternetConnection()
+        }
         self.recipeDetailsView.setUp(view: recipeDetailsView)
         self.setupNavigationItems(backAction: .popUpCurrent, haveBackBTN: true, title: "recipe Details", view: recipeDetailsView) {
             () in self.setUpNavBar()
         }
         
-        
         // Do any additional setup after loading the view.
     }
-    
+    //MARK:- public Function
     class func create(URL: String) -> RecipeDetailsVC {
       let recipeDetailsVC: RecipeDetailsVC = UIViewController.create(storyboardName: Storyboards.main, identifier:
                  ViewControllers.recipeDetailsVC)
         recipeDetailsVC.viewModel = RecipeDetailsViewModel(view: recipeDetailsVC)
         recipeDetailsVC.url = URL
-       
              return recipeDetailsVC
          }
     
@@ -48,8 +55,9 @@ class RecipeDetailsVC: UIViewController {
         self.viewModel?.recipeUrlOpener()
     }
 }
+//MARK:- private function
 extension RecipeDetailsVC{
-    func setUpNavBar(){
+    private func setUpNavBar(){
           let SharingItem = UIBarButtonItem(image: UIImage.init(named: "share"), style: .done, target: self, action: #selector(sharing))
              SharingItem.tintColor = UIColor.gray
          let rightPadding = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
@@ -62,10 +70,21 @@ extension RecipeDetailsVC{
         self.viewModel?.sharingOption()
     }
     
+    private func checkInternetConnection(){
+        let internetConnectionViewController = InternetConnectionViewController.create()
+                   navigationController?.pushViewController(internetConnectionViewController, animated: true)
+    }
 
 
 }
+//MARK:- conform Protocols
 extension RecipeDetailsVC: RecipeDetailsVCProtocol {
+    func showNoConnection() {
+   if !Reachability.isConnectedToNetwork(){
+             checkInternetConnection()
+        }
+    }
+    
     func getRecipeImage(image:UIImage){
         self.recipeDetailsView.recipeDetalsImageView.image = image
     }

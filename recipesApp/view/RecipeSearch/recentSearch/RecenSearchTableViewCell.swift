@@ -9,8 +9,9 @@
 import UIKit
 
 class RecenSearchTableViewCell: UITableViewCell {
-
+  //MARK:- Outlets
     @IBOutlet weak var recentSearchLabel: UILabel!
+    //MARK:- life cycle function
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,13 +25,16 @@ class RecenSearchTableViewCell: UITableViewCell {
     }
     
 }
+//MARK:- public function
 extension RecenSearchTableViewCell{
     func configure(recentSearcLabel:String){
         self.recentSearchLabel.text = recentSearcLabel
     }
 }
+//MARK:- private function
 extension RecenSearchTableViewCell{
     private func SetUpUILabel(){
+         recentSearchLabel.font = UIFont.boldSystemFont(ofSize: 15)
         recentSearchLabel.textAlignment = .left
         recentSearchLabel.sizeToFit()
          recentSearchLabel.numberOfLines = 0
