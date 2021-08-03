@@ -12,14 +12,16 @@ protocol recipeSearchTableViewCellProtocol {
     func Configration(recipeImage:UIImage,recipeTitle:String,recipeDescription:String,recipeHealthLabel:String)
 }
 class recipeSearchTableViewCell: UITableViewCell {
-
+    //MARK:- Outlets
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeSourceLabel: UILabel!
     @IBOutlet weak var recipeCategoryLabel: UILabel!
+    //MARK:- properties
     var delegate: recipeSearchTableViewCell?
     var viewModel: recipeSearchTableViewCellViewModelProtocol?
     var callback: ((UITableViewCell) -> Void)?
+   //MARK:- lifeCycle func
     override func awakeFromNib() {
         super.awakeFromNib()
         SetUpUILabel()
@@ -35,6 +37,7 @@ class recipeSearchTableViewCell: UITableViewCell {
     }
     
 }
+
 extension recipeSearchTableViewCell{
    private func configure(recipeImage:UIImage,recipeTitle:String,recipeDescription:String,recipeHealthLabel:String){
         self.recipeImage.image=recipeImage
@@ -43,6 +46,7 @@ extension recipeSearchTableViewCell{
         self.recipeCategoryLabel.text = recipeHealthLabel
     }
 }
+//MARK:- private function
 extension recipeSearchTableViewCell{
     private func SetUpUILabel(){
         recipeTitleLabel.sizeToFit()
@@ -50,6 +54,7 @@ extension recipeSearchTableViewCell{
     }
 
 }
+//MARK:- conform Protocols
 extension recipeSearchTableViewCell: recipeSearchTableViewCellProtocol{
     func sendDataToViewModel(dataofTheCell: Hit) {
         viewModel?.takeDataFromVC(data: dataofTheCell)

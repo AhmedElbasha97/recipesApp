@@ -103,18 +103,9 @@ struct Recipe: Codable {
     let digest: [Digest]?
 }
 
-//enum Caution: String, Codable {
-//    case fodmap = "FODMAP"
-//    case soy = "Soy"
-//    case sulfites = "Sulfites"
-//}
 
-enum DietLabel: String, Codable {
-    case balanced = "Balanced"
-    case highFiber = "High-Fiber"
-    case lowCarb = "Low-Carb"
-    case lowSodium = "Low-Sodium"
-}
+
+
 
 // MARK: - Digest
 struct Digest: Codable {
