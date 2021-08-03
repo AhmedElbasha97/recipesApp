@@ -53,7 +53,7 @@ extension recipeSearchTableViewCellViewModel{
 extension recipeSearchTableViewCellViewModel: recipeSearchTableViewCellViewModelProtocol{
     func takeDataFromVC(data: Hit) {
         self.getImageOfRecipe(path: data.recipe?.image ?? "") { (image) in
-            self.view?.Configration(recipeImage: image!, recipeTitle: data.recipe?.label ?? "", recipeDescription: data.recipe?.source ?? "", recipeHealthLabel: self.setUpHealthLabelString(healthLabel: data.recipe?.healthLabels ?? [""]))
+            self.view?.Configration(recipeImage: image ?? UIImage.init(named: "noFoodImage")!, recipeTitle: data.recipe?.label ?? "", recipeDescription: data.recipe?.source ?? "", recipeHealthLabel: self.setUpHealthLabelString(healthLabel: data.recipe?.healthLabels ?? [""]))
         }
     }
     
