@@ -30,6 +30,7 @@ class  recipDetailsView: UIView {
 }
 //MARK:- Private Function
 extension recipDetailsView{
+    //MARK:- setup sub views
     private func shapeTheBTN(BTN: UIButton,titleOfTheButton:String, sizeOfTheFont: CGFloat){
         BTN.setTitle("\(titleOfTheButton)", for: .normal)
         BTN.tintColor = UIColor.darkGray

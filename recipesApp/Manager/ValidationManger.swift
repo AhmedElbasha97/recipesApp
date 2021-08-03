@@ -26,7 +26,7 @@ class Validations {
     }
     
     func isValidSearch(SearchKewWord: String?) -> Bool {
-        let regEx =  "^[a-zA-Z]+$"
+        let regEx =  "^(([^ ]?)(^[a-zA-Z].*[a-zA-Z]$)([^ ]?))$"
         let pred = NSPredicate(format: "SELF MATCHES %@", regEx)
         if !pred.evaluate(with: SearchKewWord) {
             return false

@@ -57,18 +57,20 @@ extension recipeSearchViewModel{
                 if data.count == 0{
                 self.view?.showNoDataImage()
                 self.view?.hideLoader()
-                    self.view?.showRecipeTableView()
+                self.view?.showRecipeTableView()
+                self.view?.reloadData()
                 self.view?.showAlert(message: "There's No Data To Show")
                 }else{
                 self.view?.hideNoDataImage()
                 self.arrOfRecipe=data.hits ?? []
                 self.count = data.to ?? 0
                 self.theTotalNumOfItems = data.count ?? 0
-                    self.urlOfNextPage = data.links?.next?.href ?? " "
+                self.urlOfNextPage = data.links?.next?.href ?? " "
                 self.view?.hideLoader()
-                    self.view?.showRecipeTableView()
+                self.view?.showRecipeTableView()
                 self.view?.reloadData()
                 }
+                
             case .failure(let error):
                 self.view?.hideLoader()
                 self.view?.showAlert(message: "\(error.localizedDescription)")
@@ -88,20 +90,21 @@ extension recipeSearchViewModel{
     if !Reachability.isConnectedToNetwork(){
         self.view?.showNoConnection()
     }
+   
         self.view?.showloader()
         if (count > theTotalNumOfItems){
-            
+         
         }else{
+            if urlOfNextPage != ""{
             APIManager.paginationForSearchRecipes(url:self.urlOfNextPage) { (response) in
         switch response{
         case .success(let data):
             print("in pagination")
             self.count = data.to ?? 0
-            self.urlOfNextPage = data.links?.next?.href ?? " "
+            self.urlOfNextPage = data.links?.next?.href ?? ""
             for data in data.hits ?? []{
             self.arrOfRecipe.append(data)
             }
-            
             self.view?.hideLoader()
              self.view?.reloadData()
         print(data)
@@ -110,13 +113,16 @@ extension recipeSearchViewModel{
             self.view?.showAlert(message: "\(error.localizedDescription)")
         print(error)
                     }
-            
+                }
                 }
         }
+    
     }
 }
 //MARK:- conform protocol
 extension recipeSearchViewModel: recipeSearchViewModelProtocol{
+
+    
     func getRecentSearchedData() {
         self.getRecentSearchData()
     }
@@ -149,9 +155,9 @@ extension recipeSearchViewModel: recipeSearchViewModelProtocol{
             break
         case 2:
             searchForRecipe(searchKeyWord: "\(searchKeyWord)", filterIndex: "keto-friendly")
-              break
+            break
         case 3:
-            searchForRecipe(searchKeyWord: "\(searchKeyWord)", filterIndex: "vegan")
+              searchForRecipe(searchKeyWord: "\(searchKeyWord)", filterIndex: "vegan")
               break
         default:
             searchForRecipe(searchKeyWord: "\(searchKeyWord)", filterIndex: "")
@@ -163,12 +169,12 @@ extension recipeSearchViewModel: recipeSearchViewModelProtocol{
         return arrOfRecipe.count
     }
  
-    func anotherPage(index:Int) {
+    func anotherPage(index: Int) {
         
         if (index>=(count-2)){
         AnothePage()
         }
-    }
     
+    }
     
 }

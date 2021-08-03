@@ -48,9 +48,10 @@ class RecipeSearchVC: UIViewController {
     }
    // MARK:- Public Methods
     @objc func indexChanged() {
-        viewModel.searchForRecipes(searchKeyWord: searchedText, filterIndex: RecipeSearchView.searchRecipeSugmentedController.selectedSegmentIndex)
-           
-       }
+        getData()
+        
+    }
+
 
 }
 // MARK:- Private Methods
@@ -69,6 +70,10 @@ extension RecipeSearchVC{
     private func checkInternetConnection(){
         let internetConnectionViewController = InternetConnectionViewController.create()
                    navigationController?.pushViewController(internetConnectionViewController, animated: true)
+    }
+    
+    private func getData() {
+               viewModel.searchForRecipes(searchKeyWord: searchedText, filterIndex: RecipeSearchView.searchRecipeSugmentedController.selectedSegmentIndex)
     }
     
     private func setupSearchBarView(){
@@ -164,16 +169,6 @@ extension RecipeSearchVC: RecipeSearchVCProtocol {
 }
 //MARK:- serchBar Protocols
 extension RecipeSearchVC: UISearchBarDelegate {
-    func willChangeValue<Value>(for keyPath: __owned KeyPath<RecipeSearchVC, Value>) {
-        
-        self.viewModel.decideWhichTableViewToShow(anotherViewHasbeenDismised: false)
-        self.viewModel.getRecentSearchedData()
-    }
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-         self.viewModel.decideWhichTableViewToShow(anotherViewHasbeenDismised: false)
-        self.viewModel.getRecentSearchedData()
-    }
-    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         if (RecipeSearchView.searchRecipeSearchBar.text != ""){
             self.anotherViewHasbeenDismised = true
@@ -185,12 +180,28 @@ extension RecipeSearchVC: UISearchBarDelegate {
 
     }
     
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let  char = text.cString(using: String.Encoding.utf8)!
+         let isBackSpace = strcmp(char, "\\b")
+
+         if (isBackSpace == -92) {
+             self.viewModel.decideWhichTableViewToShow(anotherViewHasbeenDismised: false)
+             self.viewModel.getRecentSearchedData()         }
+         return true
+     }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            self.viewModel.decideWhichTableViewToShow(anotherViewHasbeenDismised: false)
+            self.viewModel.getRecentSearchedData()
+
+        }
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-       
         guard let text =  RecipeSearchView.searchRecipeSearchBar.text else { return }
-        
        searchedText = text
-        indexChanged()
+        getData()
     }
     
 }

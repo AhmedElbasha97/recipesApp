@@ -57,7 +57,9 @@ class RecipeDetailsVC: UIViewController {
 }
 //MARK:- private function
 extension RecipeDetailsVC{
+    //MARK:- SetUp Sup Views
     private func setUpNavBar(){
+        self.navigationController?.navigationBar.isHidden = false
           let SharingItem = UIBarButtonItem(image: UIImage.init(named: "share"), style: .done, target: self, action: #selector(sharing))
              SharingItem.tintColor = UIColor.gray
          let rightPadding = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)

@@ -9,8 +9,9 @@
 import UIKit
 
 class InternetConnectionViewController: UIViewController {
-
+//MARK:- Outlets
     @IBOutlet weak var RefreshBTN: CommonUIButton!
+    //MARK:- life cycle funtion
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
@@ -20,16 +21,18 @@ class InternetConnectionViewController: UIViewController {
     
 
 
-
+ //MARK:-Public funtions
     @IBAction func Refreshing(_ sender: Any) {
         if Reachability.isConnectedToNetwork(){
              navigationController?.popViewController(animated: true)
         }
         }
+    
     class func create() -> InternetConnectionViewController {
       let internetConnectionViewController: InternetConnectionViewController = UIViewController.create(storyboardName: Storyboards.main, identifier:
                  ViewControllers.internetConnectionViewController)
              return internetConnectionViewController
          }
+    
     }
 
